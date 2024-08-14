@@ -333,6 +333,8 @@
   .navbar.active {
     visibility: visible;
     transform: translateX(300px);
+    background-color: rgba(0, 0, 0, 0.5); /* Cor preta com 50% de opacidade */
+    transition: transform 0.3s ease, background-color 0.3s ease; /* Transição suave */
   }
   
   .navbar-top {
@@ -1112,3 +1114,123 @@
     .feature-list { grid-template-columns: 1fr 1fr; }
   
   }
+
+  /**
+     * FORM
+  */
+  
+  .contact {
+    background-color: #f8f9fa;
+}
+
+.form-container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contact h1, .contact h2 {
+    color: #333;
+}
+
+.form-control {
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+}
+
+.form-control-input {
+    padding: 15px;
+    font-size: 1rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+textarea.form-control-input {
+    resize: none; /* Remove o redimensionamento */
+}
+
+button#buttonSend {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 15px 25px;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button#buttonSend:hover {
+    background-color: #0056b3;
+}
+
+img.img-fluid {
+    margin-left: 100px;
+    max-width: 625px; /* Garantir que a imagem não ultrapasse seu contêiner */
+    height: auto; /* Manter a proporção da imagem */
+}
+
+@media (max-width: 768px) {
+    .contact .col-lg-6 {
+        margin-bottom: 30px;
+    }
+}
+
+ /**
+     * CUSTOMERS
+  */
+ 
+  .section-clients {
+    background-color: #f8f9fa;
+    padding: 60px 0;
+}
+
+.section-clients .title-a {
+    font-size: 3rem; /* Tamanho maior para o título */
+    font-weight: 700;
+    color: #333;
+}
+
+.section-clients .client-logo {
+    max-height: 150px; /* Tamanho maior para todas as imagens */
+    width: auto;
+    padding: 15px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.section-clients .highlight {
+    max-height: 200px; /* Imagens destacadas ainda maiores */
+}
+
+.section-clients .client-name {
+    margin-top: 10px;
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+.section-clients .highlight + .client-name {
+    font-size: 1.5rem; /* Nome maior para clientes em destaque */
+    font-weight: 700;
+}
+
+.section-clients .client-logo:hover {
+    transform: scale(1.1);
+}
+
+.section-clients .col-lg-3 {
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .section-clients .col-lg-3 {
+        margin-bottom: 20px;
+    }
+}
