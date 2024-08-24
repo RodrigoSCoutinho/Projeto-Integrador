@@ -213,7 +213,7 @@
   .h5 { font-size: var(--fs-6); }
   
   .btn {
-    color: var(--yellow-gold);
+    background-color: white;
     font-size: var(--fs-6);
     font-weight: var(--fw-700);
     border: 2px solid var(--black);
@@ -1171,7 +1171,7 @@ button#buttonSend:hover {
     background-color: #0056b3;
 }
 
-img.img-fluid {
+iframe.iframe-fluid {
     margin-left: 100px;
     max-width: 625px; /* Garantir que a imagem não ultrapasse seu contêiner */
     height: auto; /* Manter a proporção da imagem */
@@ -1244,7 +1244,7 @@ img.img-fluid {
   */
  
   .footer {
-    background-color: #333;
+    background-color: #100f0f;
     color: #fff;
     padding: 40px 0;
   }
@@ -1289,3 +1289,51 @@ img.img-fluid {
     margin-top: 20px;
     font-size: 18px; /* Aumente o tamanho da fonte do texto centralizado */
   }
+
+
+  /* <!-- FEATURE --> */
+
+ .feature {
+  padding: 60px 0;
+  background-color: #f9f9f9;
+}
+
+.feature-item {
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 20px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%; /* Garante que o item ocupe toda a altura disponível */
+}
+
+.feature-icon-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feature-icon-text ion-icon {
+  font-size: 50px;
+  color: #000; /* Cor preta para o ícone */
+  margin-right: 10px; /* Espaço entre o ícone e o texto */
+}
+
+.feature-icon-text h3 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #000; /* Cor preta para o texto */
+  margin: 0; /* Remover margens */
+}
+
+.feature-item.highlight {
+  color: #000; /* Cor preta para o texto */
+  height: 100%; /* Garante que o item ocupe toda a altura disponível */
+}
+
+.feature-item.highlight .feature-icon-text ion-icon {
+  color: #000; /* Cor preta para o ícone */
+}
