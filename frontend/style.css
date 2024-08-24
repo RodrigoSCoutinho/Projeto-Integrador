@@ -1337,3 +1337,49 @@ iframe.iframe-fluid {
 .feature-item.highlight .feature-icon-text ion-icon {
   color: #000; /* Cor preta para o ícone */
 }
+
+/* <!-- COOKIES --> */
+
+.box-cookies-size {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 10px;
+  z-index: 1000;
+  font-size: 1.2rem; /* Aumenta a fonte para 1.2rem */
+}
+
+.box-cookies {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.msg-cookies {
+  margin: 0;
+}
+
+.color-cookies {
+  color: #ffd700; /* Cor dourada para o link */
+  text-decoration: underline;
+}
+
+.btn-cookies {
+  background-color: #ffd700; /* Cor dourada para o botão */
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 1.2rem; /* Aumenta a fonte para 1.2rem */
+  border-radius: 5px;
+}
+
+.btn-cookies .text-color {
+  color: #000; /* Cor preta para o texto do botão */
+}
+
+.hide {
+  display: none;
+}

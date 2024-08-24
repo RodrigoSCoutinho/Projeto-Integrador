@@ -141,3 +141,20 @@ const initAccordion = function (currentAccordion) {
 }
 
 for (let i = 0, len = accordions.length; i < len; i++) { initAccordion(accordions[i]); }
+
+/**
+ * COOKIE BOX
+ */
+
+document.addEventListener("DOMContentLoaded", function() {
+  const cookieBox = document.querySelector(".box-cookies");
+  const acceptButton = document.querySelector(".btn-cookies");
+
+  // Mostrar a barra de cookies
+  cookieBox.classList.remove("hide");
+
+  // Esconder a barra de cookies ao clicar no botão "Aceitar!"
+  acceptButton.addEventListener("click", function() {
+    cookieBox.classList.add("hide");
+  });
+});
