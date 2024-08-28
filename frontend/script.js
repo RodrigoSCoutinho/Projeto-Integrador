@@ -1,7 +1,5 @@
 'use strict';
 
-
-
 /**
  * add event listener on multiple elements
  */
@@ -11,8 +9,6 @@ const addEventOnElements = function (elements, eventType, callback) {
     elements[i].addEventListener(eventType, callback);
   }
 }
-
-
 
 /**
  * NAVBAR TOGGLE FOR MOBILE
@@ -46,8 +42,6 @@ window.addEventListener("scroll", function () {
     header.classList.remove("active");
   }
 });
-
-
 
 /**
  * SLIDER
@@ -112,17 +106,15 @@ const initSlider = function(currentSlider) {
 
 for (let i = 0, len = sliders.length; i < len; i++) { initSlider(sliders[i]); }
 
-
-
 /**
  * ACCORDION
  */
 
-const accordions = document.querySelectorAll("[data-accordion]");
+  const accordions = document.querySelectorAll("[data-accordion]");
 
-let lastActiveAccordion = accordions[0];
+  let lastActiveAccordion = accordions[0];
 
-const initAccordion = function (currentAccordion) {
+  const initAccordion = function (currentAccordion) {
 
   const accordionBtn = currentAccordion.querySelector("[data-accordion-btn]");
 
@@ -140,21 +132,56 @@ const initAccordion = function (currentAccordion) {
 
 }
 
-for (let i = 0, len = accordions.length; i < len; i++) { initAccordion(accordions[i]); }
+  for (let i = 0, len = accordions.length; i < len; i++) { initAccordion(accordions[i]); }
 
 /**
  * COOKIE BOX
  */
 
-document.addEventListener("DOMContentLoaded", function() {
-  const cookieBox = document.querySelector(".box-cookies");
-  const acceptButton = document.querySelector(".btn-cookies");
+  document.addEventListener("DOMContentLoaded", function() {
+    const cookieBox = document.querySelector(".box-cookies");
+    const acceptButton = document.querySelector(".btn-cookies");
 
-  // Mostrar a barra de cookies
-  cookieBox.classList.remove("hide");
+    // Mostrar a barra de cookies
+    cookieBox.classList.remove("hide");
 
-  // Esconder a barra de cookies ao clicar no botão "Aceitar!"
-  acceptButton.addEventListener("click", function() {
-    cookieBox.classList.add("hide");
+    // Esconder a barra de cookies ao clicar no botão "Aceitar!"
+    acceptButton.addEventListener("click", function() {
+      cookieBox.classList.add("hide");
+    });
   });
-});
+
+  /**
+   * GETTING THE DATA FROM THE FORM
+   */
+
+  document.getElementById('formContact').addEventListener('submit', async function(event) {
+    event.preventDefault(); 
+
+    const formData = {
+        name: document.getElementById('name').value,
+        phone: document.getElementById('phone').value,
+        email: document.getElementById('email').value,
+        message: document.getElementById('message').value
+    };
+
+    //* Sending data to the backend via fetch API
+    try {
+        const response = await fetch('URL_DA_API_AQUI', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        });
+
+        if (response.ok) {
+            alert('Mensagem enviada com sucesso!');
+        } else {
+            alert('Erro ao enviar a mensagem, tente novamente.');
+        }
+    } catch (error) {
+        console.error('Erro:', error);
+        alert('Erro ao enviar a mensagem, tente novamente.');
+    }
+  });
