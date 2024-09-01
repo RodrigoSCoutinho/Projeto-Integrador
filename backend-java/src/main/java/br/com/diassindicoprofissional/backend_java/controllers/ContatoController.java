@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.diassindicoprofissional.backend_java.entities.Contato;
 import br.com.diassindicoprofissional.backend_java.services.IContatoService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 @RequestMapping("/api/contato")
@@ -42,6 +43,19 @@ public class ContatoController {
             }
         } catch (Exception ex) {
             System.out.println("Erro ao buscar contatos" + ex.getMessage());
+        }
+        return ResponseEntity.badRequest().build();
+    }
+
+    @GetMapping("contato/{id}")
+    public ResponseEntity<Contato> buscarContatosPeloId(@PathVariable Integer id) {
+        try {
+            Contato res = contatoService.buscarContatoPorId(id);
+            if (res != null) {
+                return ResponseEntity.ok(res);
+            }
+        } catch (Exception ex) {
+            System.out.println("Erro ao buscar contato pelo id" + ex.getMessage());
         }
         return ResponseEntity.badRequest().build();
     }

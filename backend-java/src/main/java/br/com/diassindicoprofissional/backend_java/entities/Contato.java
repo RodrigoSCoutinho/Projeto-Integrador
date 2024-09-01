@@ -12,7 +12,7 @@ public class Contato {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     private String name;
     private String phone;
     private String email;
@@ -21,7 +21,7 @@ public class Contato {
     public Contato() {
     }
 
-    public Contato(Long id, String name, String phone, String email, String message) {
+    public Contato(Integer id, String name, String phone, String email, String message) {
         this.id = id;
         this.name = name;
         this.phone = phone;
@@ -29,11 +29,11 @@ public class Contato {
         this.message = message;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

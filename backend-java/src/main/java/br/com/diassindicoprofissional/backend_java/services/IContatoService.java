@@ -9,4 +9,6 @@ public interface IContatoService {
 
     public List<Contato> buscarContatos();
 
+    public Contato buscarContatoPorId(Integer id);
+
 }

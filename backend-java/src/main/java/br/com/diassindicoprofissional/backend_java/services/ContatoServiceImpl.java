@@ -24,4 +24,9 @@ public class ContatoServiceImpl implements IContatoService {
         return contatoDao.findAll();
     }
 
+    @Override
+    public Contato buscarContatoPorId(Integer id) {
+        return contatoDao.findById(id);
+    }
+
 }
