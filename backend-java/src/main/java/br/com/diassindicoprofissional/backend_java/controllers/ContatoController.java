@@ -1,5 +1,7 @@
 package br.com.diassindicoprofissional.backend_java.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.diassindicoprofissional.backend_java.entities.Contato;
 import br.com.diassindicoprofissional.backend_java.services.IContatoService;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @RestController
 @RequestMapping("/api/contato")
@@ -29,4 +32,18 @@ public class ContatoController {
         }
         return ResponseEntity.badRequest().build();
     }
+
+    @GetMapping("/contatos")
+    public ResponseEntity<List<Contato>> buscarContatos() {
+        try {
+            List<Contato> res = contatoService.buscarContatos();
+            if (res != null) {
+                return ResponseEntity.ok(res);
+            }
+        } catch (Exception ex) {
+            System.out.println("Erro ao buscar contatos" + ex.getMessage());
+        }
+        return ResponseEntity.badRequest().build();
+    }
+
 }

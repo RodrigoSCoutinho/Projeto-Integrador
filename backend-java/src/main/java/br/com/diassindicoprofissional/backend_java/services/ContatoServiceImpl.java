@@ -1,5 +1,7 @@
 package br.com.diassindicoprofissional.backend_java.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,6 +17,11 @@ public class ContatoServiceImpl implements IContatoService {
     @Override
     public Contato salvarContato(Contato contato) {
         return contatoDao.save(contato);
+    }
+
+    @Override
+    public List<Contato> buscarContatos() {
+        return contatoDao.findAll();
     }
 
 }
