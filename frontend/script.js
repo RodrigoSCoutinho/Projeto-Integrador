@@ -167,7 +167,7 @@ for (let i = 0, len = sliders.length; i < len; i++) { initSlider(sliders[i]); }
 
     //* Sending data to the backend via fetch API
     try {
-        const response = await fetch('URL_DA_API_AQUI', {
+        const response = await fetch('http://localhost:8081/api/contato', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
