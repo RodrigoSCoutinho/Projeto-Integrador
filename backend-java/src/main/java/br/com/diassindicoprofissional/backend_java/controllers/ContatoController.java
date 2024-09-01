@@ -1,6 +1,7 @@
 package br.com.diassindicoprofissional.backend_java.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,8 +18,15 @@ public class ContatoController {
     private IContatoService contatoService;
 
     @PostMapping("/enviar")
-    public String enviarContato(@RequestBody Contato contato) {
-        contatoService.salvarContato(contato);
-        return "Contato salvo com sucesso!";
+    public ResponseEntity<Contato> enviarContato(@RequestBody Contato contato) {
+        try {
+            Contato res = contatoService.salvarContato(contato);
+            if (res != null) {
+                return ResponseEntity.ok(res);
+            }
+        } catch (Exception ex) {
+            System.out.println("Erro ao cadastrar contato" + ex.getMessage());
+        }
+        return ResponseEntity.badRequest().build();
     }
 }

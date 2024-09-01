@@ -13,8 +13,8 @@ public class ContatoServiceImpl implements IContatoService {
     private ContatoDAO contatoDao;
 
     @Override
-    public void salvarContato(Contato contato) {
-        contatoDao.save(contato);
+    public Contato salvarContato(Contato contato) {
+        return contatoDao.save(contato);
     }
 
 }
