@@ -11,11 +11,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.diassindicoprofissional.backend_java.entities.Contato;
 import br.com.diassindicoprofissional.backend_java.services.IContatoService;
+
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
-@RequestMapping("/api/contato")
+@CrossOrigin(origins = "http://localhost:5501")
+@RequestMapping("/api/v1/")
 public class ContatoController {
 
     @Autowired
