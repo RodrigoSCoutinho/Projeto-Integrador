@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:5501")
+@CrossOrigin(origins = "http://127.0.0.1:5501")
 @RequestMapping("/api/v1/")
 public class ContatoController {
 
