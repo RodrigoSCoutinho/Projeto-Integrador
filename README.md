@@ -11,7 +11,7 @@ Para a realização deste projeto, serão utilizadas as seguintes tecnologias:
 - **HTML:** Utilizado para estruturar o conteúdo das páginas web.
 - **CSS:** Utilizado para estilizar e definir o layout das páginas web.
 - **JavaScript:** Utilizado para adicionar interatividade e dinamismo ao site.
-- **Python:** Utilizado para a lógica de backend e processamento de dados.
+- **Java:** Utilizado para a lógica de backend e processamento de dados.
 - **PostgreSQL:** Banco de dados relacional utilizado para armazenar informações da empresa e dos clientes.
 - **Figma:** Ferramenta de design utilizada para a criação do layout e protótipos do site.
 - **Excalidraw:** Utilizado para a criação de diagramas e fluxogramas do projeto.
@@ -49,8 +49,8 @@ dias-sindico-profissional/
 │   ├── images/
 │   ├── js/
 │   └── index.html
-├── backend/
-│   ├── python/
+├── backend-java/
+│   ├── spring/
 │   └── postgresql/
 ├── README.md
 └── LICENSE
