@@ -28,7 +28,7 @@ Para a realização deste projeto, serão utilizadas as seguintes tecnologias:
    - Adição de funcionalidades e interatividade com JavaScript.
 
 3. **Desenvolvimento Backend:**
-   - Configuração do servidor utilizando Python.
+   - Configuração do servidor utilizando Java.
    - Integração com o banco de dados PostgreSQL para armazenamento e recuperação de dados.
 
 4. **Teste e Implantação:**
