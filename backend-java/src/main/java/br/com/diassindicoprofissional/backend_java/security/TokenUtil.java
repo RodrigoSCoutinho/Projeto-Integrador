@@ -26,11 +26,13 @@ public class TokenUtil {
     public static final long DAYS = 24 * HOURS;
     public static final long EXPIRATION_TIME = 5 * MINUTES;
 
+    // aqui é o nome do emissor do token (pode ser qualquer coisa)
     public static final String ISSUER = "DiasSindicoProfissional";
 
     // uma string de 32 caracteres
     public static final String SECRET_KEY = "0b4f6a4e8c2d0a1b0f4e8c2d0a1b0f4e";
 
+    // aqui é o prefixo que será usado para identificar o token
     public static final String PREFIX = "Bearer";
 
     public static SalutarToken encode(Usuario usuario) {
