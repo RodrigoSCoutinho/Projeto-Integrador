@@ -1,4 +1,4 @@
-package br.com.diassindicoprofissional.backend_java.services;
+package br.com.diassindicoprofissional.backend_java.services.Contato;
 
 import java.util.List;
 

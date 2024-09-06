@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.diassindicoprofissional.backend_java.entities.Contato;
-import br.com.diassindicoprofissional.backend_java.services.IContatoService;
+import br.com.diassindicoprofissional.backend_java.services.Contato.IContatoService;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
