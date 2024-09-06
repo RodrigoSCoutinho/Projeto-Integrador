@@ -2,9 +2,8 @@ package br.com.diassindicoprofissional.backend_java.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import br.com.diassindicoprofissional.backend_java.entities.User;
+import br.com.diassindicoprofissional.backend_java.entities.Usuario;
 
-public interface UserDAO extends JpaRepository<User, Long> {
-    <Optional> User findByEmail(String email);
-
+public interface UserDAO extends JpaRepository<Usuario, Long> {
+    public Usuario findByLoginAnd(String login);
 }
