@@ -6,6 +6,8 @@ import org.springframework.stereotype.Component;
 
 import br.com.diassindicoprofissional.backend_java.dao.UserDAO;
 import br.com.diassindicoprofissional.backend_java.entities.Usuario;
+import br.com.diassindicoprofissional.backend_java.security.SalutarToken;
+import br.com.diassindicoprofissional.backend_java.security.TokenUtil;
 
 @Component
 public class AuthServiceImp implements IAuthService {
@@ -20,5 +22,17 @@ public class AuthServiceImp implements IAuthService {
         novo.setSenha(novaSenha); // A senha criptografada é setada no usuário
 
         return dao.save(novo); // O usuário é salvo no banco de dados
+    }
+
+    @Override
+    public SalutarToken realizarLogin(Usuario dadosLogin) {
+        Usuario res = dao.findByLoginAnd(dadosLogin.getLogin());
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(10);
+        if (res != null) {
+            if (encoder.matches(dadosLogin.getSenha(), res.getSenha())) {
+                return TokenUtil.encode(res); // *Retornando o Token */
+            }
+        }
+        return null;
     }
 }
