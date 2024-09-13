@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mobile_flutter/components/my_button.dart';
 import 'package:mobile_flutter/components/my_textfield.dart';
 import 'package:mobile_flutter/components/square_tile.dart';
+import 'dart:convert'; // Para codificar o body em JSON
+import 'package:http/http.dart' as http;
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
