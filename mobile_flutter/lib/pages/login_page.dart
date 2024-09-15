@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile_flutter/components/my_button.dart';
 import 'package:mobile_flutter/components/my_textfield.dart';
 import 'package:mobile_flutter/components/square_tile.dart';
-import 'dart:convert'; // Para codificar o body em JSON
+import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class LoginPage extends StatelessWidget {
@@ -14,14 +14,13 @@ class LoginPage extends StatelessWidget {
 
   //* sign user in method to login authentication
 
-  void signUserIn() {
+  void signUserIn() async {
     String username = usernameController.text;
     String password = passwordController.text;
 
     String apiUrl = 'http://localhost:8080/api/login';
 
     try {
-      // requisição POST com username e password
       var response = await http.post(
         Uri.parse(apiUrl),
         headers: {"Content-Type": "application/json"},
@@ -33,7 +32,7 @@ class LoginPage extends StatelessWidget {
 
       if (response.statusCode == 200) {
         var data = jsonDecode(response.body);
-        String token = data['token']; 
+        String token = data['token'];
 
         // Armazenando o token JWT localmente para futuras requisições
         print("Login realizado com sucesso: $token");
@@ -57,7 +56,7 @@ class LoginPage extends StatelessWidget {
             children: [
               const SizedBox(height: 50),
 
-              // logo da empresa
+              // logo marca
               Image.asset(
                 'lib/images/logo-marca.jpeg',
                 width: 100,
