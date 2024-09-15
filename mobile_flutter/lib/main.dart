@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_flutter/pages/login_page.dart';
+import 'package:mobile_flutter/pages/DetalhesCondominio_page.dart';
+import 'package:mobile_flutter/pages/Receitas_page.dart';
+import 'package:mobile_flutter/pages/Dashboard_page.dart';
+import 'package:mobile_flutter/pages/Login_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginPage(), // LoginPage is the first screen to be displayed
+      home: DashboardPage(),
     );
   }
 }

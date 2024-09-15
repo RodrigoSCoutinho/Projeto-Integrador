@@ -4,17 +4,16 @@ import 'package:mobile_flutter/components/my_textfield.dart';
 import 'package:mobile_flutter/components/square_tile.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'dashboard_page.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
 
-  // text editing controllers
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
 
-  //* sign user in method to login authentication
-
-  void signUserIn() async {
+  // Método de autenticação do usuário
+  void signUserIn(BuildContext context) async {
     String username = usernameController.text;
     String password = passwordController.text;
 
@@ -34,8 +33,17 @@ class LoginPage extends StatelessWidget {
         var data = jsonDecode(response.body);
         String token = data['token'];
 
-        // Armazenando o token JWT localmente para futuras requisições
+        // Armazenar o token JWT localmente para futuras requisições
         print("Login realizado com sucesso: $token");
+
+        // Redirecionar para o dashboard financeiro
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) =>
+                DashboardPage(), // Redireciona para o dashboard
+          ),
+        );
       } else {
         print("Erro no login: ${response.body}");
       }
@@ -47,7 +55,6 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Colors.grey[300],
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Center(
@@ -56,7 +63,7 @@ class LoginPage extends StatelessWidget {
             children: [
               const SizedBox(height: 50),
 
-              // logo marca
+              // Logo marca
               Image.asset(
                 'lib/images/logo-marca.jpeg',
                 width: 100,
@@ -65,7 +72,7 @@ class LoginPage extends StatelessWidget {
 
               const SizedBox(height: 50),
 
-              // painel administrativo
+              // Painel administrativo
               Text(
                 'Painel Administrativo',
                 style: TextStyle(
@@ -76,7 +83,7 @@ class LoginPage extends StatelessWidget {
 
               const SizedBox(height: 25),
 
-              // username textfield
+              // Username textfield
               MyTextField(
                 controller: usernameController,
                 hintText: 'Username',
@@ -85,7 +92,7 @@ class LoginPage extends StatelessWidget {
 
               const SizedBox(height: 10),
 
-              // password textfield
+              // Password textfield
               MyTextField(
                 controller: passwordController,
                 hintText: 'Password',
@@ -110,14 +117,14 @@ class LoginPage extends StatelessWidget {
 
               const SizedBox(height: 25),
 
-              // sign in button
+              // Sign in button
               MyButton(
-                onTap: signUserIn,
+                onTap: () => signUserIn(context),
               ),
 
               const SizedBox(height: 50),
 
-              // ou continue com
+              // Ou continue com
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: Row(
@@ -147,22 +154,22 @@ class LoginPage extends StatelessWidget {
 
               const SizedBox(height: 50),
 
-              // google + apple sign in buttons
+              // Google + Apple sign in buttons
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
-                  // google button
+                  // Google button
                   SquareTile(imagePath: 'lib/images/google.png'),
 
                   SizedBox(width: 25),
-                  // apple button
+                  // Apple button
                   SquareTile(imagePath: 'lib/images/apple.png'),
                 ],
               ),
 
               const SizedBox(height: 50),
 
-              // not a member? register now
+              // Not a member? Register now
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
