@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mobile_flutter/components/my_button.dart';
 import 'package:mobile_flutter/components/my_textfield.dart';
 import 'package:mobile_flutter/components/square_tile.dart';
+import 'dart:convert'; // Para codificar o body em JSON
+import 'package:http/http.dart' as http;
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -10,8 +12,38 @@ class LoginPage extends StatelessWidget {
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
 
-  // sign user in method
-  void signUserIn() {}
+  //* sign user in method to login authentication
+
+  void signUserIn() {
+    String username = usernameController.text;
+    String password = passwordController.text;
+
+    String apiUrl = 'http://localhost:8080/api/login';
+
+    try {
+      // requisição POST com username e password
+      var response = await http.post(
+        Uri.parse(apiUrl),
+        headers: {"Content-Type": "application/json"},
+        body: jsonEncode({
+          'username': username,
+          'password': password,
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        var data = jsonDecode(response.body);
+        String token = data['token']; 
+
+        // Armazenando o token JWT localmente para futuras requisições
+        print("Login realizado com sucesso: $token");
+      } else {
+        print("Erro no login: ${response.body}");
+      }
+    } catch (e) {
+      print("Erro na requisição: $e");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
