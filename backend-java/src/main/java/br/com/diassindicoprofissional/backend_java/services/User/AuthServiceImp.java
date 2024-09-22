@@ -26,7 +26,7 @@ public class AuthServiceImp implements IAuthService {
 
     @Override
     public SalutarToken realizarLogin(Usuario dadosLogin) {
-        Usuario res = dao.findByLoginAnd(dadosLogin.getLogin());
+        Usuario res = dao.findByLogin(dadosLogin.getLogin());
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(10);
         if (res != null) {
             if (encoder.matches(dadosLogin.getSenha(), res.getSenha())) {

@@ -8,8 +8,6 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.ServletRequest;
-import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -30,6 +28,7 @@ public class MyFilter extends OncePerRequestFilter {
             }
         }
         // nao faz nada.. .apenas encaminha a requisicao
+        System.out.println("Autenticando com o token: " + request.getHeader("Authorization"));
         filterChain.doFilter(request, response);
     }
 

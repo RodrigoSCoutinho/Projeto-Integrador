@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.diassindicoprofissional.backend_java.entities.Usuario;
@@ -13,7 +14,8 @@ import br.com.diassindicoprofissional.backend_java.security.SalutarToken;
 import br.com.diassindicoprofissional.backend_java.services.User.IAuthService;
 
 @RestController
-@CrossOrigin("*")
+@CrossOrigin(origins = "http://127.0.0.1:5501")
+@RequestMapping("/api/v1/")
 public class AuthController {
 
     @Autowired
@@ -21,6 +23,7 @@ public class AuthController {
 
     @PostMapping("/usuarios")
     public ResponseEntity<Usuario> adicionarNovo(@RequestBody Usuario novo) {
+        System.out.println("Dados recebidos: " + novo);
         Usuario res = service.criarUsuario(novo);
         if (res != null) {
             return ResponseEntity.status(HttpStatus.CREATED).body(res);

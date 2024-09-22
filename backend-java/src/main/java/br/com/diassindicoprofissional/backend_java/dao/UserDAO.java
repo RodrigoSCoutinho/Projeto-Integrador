@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import br.com.diassindicoprofissional.backend_java.entities.Usuario;
 
 public interface UserDAO extends JpaRepository<Usuario, Long> {
-    public Usuario findByLoginAnd(String login);
+    public Usuario findByLogin(String login);
 }

@@ -1,27 +1,33 @@
-document.getElementById('loginForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Impede o comportamento padrão do formulário (recarregar a página)
+document.getElementById('loginForm').addEventListener('submit', async function(event) {
+    event.preventDefault(); 
 
-    const login = document.getElementById('username').value;
-    const senha = document.getElementById('password').value;
+    const formData = {
+        nome: document.getElementById('nome').value,
+        senha: document.getElementById('senha').value
+    };
 
-    fetch('http://localhost:8080/api/login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            login: login,
-            senha: senha
-        })
-    })
-    .then(response => response.json()) // Espera uma resposta JSON do servidor
-    .then(data => {
-        // Mensagem de sucesso ou redirecionamento
-        alert('Login bem-sucedido!'); 
-        window.location.href = '/home'; // Redireciona para a página inicial após o login
-    })
-    .catch(error => {
+    // Enviando dados para o backend via fetch API
+    try {
+        const response = await fetch('http://localhost:8081/api/v1/usuarios', { 
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        });
+
+        if (response.ok) {
+            const data = await response.json(); 
+            localStorage.setItem('token', data.token);
+            alert('Autenticação bem-sucedida!');
+            window.location.href = '/dashboard';
+        } else {
+            const errorText = await response.text(); 
+            alert(`Erro ao autenticar: ${errorText}`);
+        }
+        
+    } catch (error) {
         console.error('Erro:', error);
-        alert('Ocorreu um erro ao tentar fazer login.');
-    });
+        alert('Erro ao autenticar, tente novamente.');
+    }
 });
