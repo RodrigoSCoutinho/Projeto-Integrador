@@ -62,3 +62,15 @@ switchMode.addEventListener('change', function () {
 		document.body.classList.remove('dark');
 	}
 })
+
+//* Example of the download button
+
+document.getElementById('downloadReport').addEventListener('click', function() {
+	const { jsPDF } = window.jspdf;
+	const doc = new jsPDF();
+	doc.text('Relatório Financeiro', 10, 10);
+	doc.text('Saldo Atual: R$50.000,00', 10, 20);
+	doc.text('Receitas Mês: R$15.000,00', 10, 30);
+	doc.text('Despesas Mês: R$8.000,00', 10, 40);
+	doc.save('relatorio-financeiro.pdf');
+});
