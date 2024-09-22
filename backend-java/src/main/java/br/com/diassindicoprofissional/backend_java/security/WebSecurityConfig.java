@@ -16,13 +16,16 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
-                .cors().and() // Adicione isso
                 .authorizeRequests()
                 .requestMatchers(HttpMethod.POST, "/usuarios").permitAll()
                 .requestMatchers(HttpMethod.POST, "/login").permitAll()
+                .requestMatchers("/api/v1/login").permitAll()
+                .requestMatchers("/api/v1/usuarios").permitAll()
+
                 .anyRequest().authenticated();
 
         http.addFilterBefore(new MyFilter(), UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
+
 }

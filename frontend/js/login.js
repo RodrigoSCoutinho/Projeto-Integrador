@@ -2,7 +2,8 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
     event.preventDefault(); 
 
     const formData = {
-        nome: document.getElementById('nome').value,
+        login: document.getElementById('login').value,
+        name: document.getElementById('nome').value,
         senha: document.getElementById('senha').value
     };
 
@@ -20,7 +21,7 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
             const data = await response.json(); 
             localStorage.setItem('token', data.token);
             alert('Autenticação bem-sucedida!');
-            window.location.href = '/dashboard';
+            window.location.href = './dashboard.html';
         } else {
             const errorText = await response.text(); 
             alert(`Erro ao autenticar: ${errorText}`);
