@@ -14,6 +14,7 @@ API para consumo de dados de um formulário de contato. A API permite que usuár
 -   [Java Mail Sender](https://docs.spring.io/spring-framework/)
 -   [Spring Security](https://spring.io/guides/gs/securing-web)
 -   [JWT Token](https://jwt.io/)
+-   [Docker](https://www.docker.com/)
 
 ## Rules
 
@@ -39,9 +40,9 @@ API para consumo de dados de um formulário de contato. A API permite que usuár
 
 [✅] Resolver o erro de cors que ocorre ao tentar acessar a API de um domínio diferente.
 
-[] Documentar a API usando o Swagger, fornecendo informações detalhadas sobre os endpoints disponíveis e como usá-los.
+[ - ] Documentar a API usando o Swagger, fornecendo informações detalhadas sobre os endpoints disponíveis e como usá-los.
 
-[] Implementar testes automatizados para garantir a qualidade e integridade do código.
+[ - ] Implementar testes automatizados para garantir a qualidade e integridade do código.
 
 ## Práticas adotadas
 
@@ -55,6 +56,12 @@ API para consumo de dados de um formulário de contato. A API permite que usuár
 -   Tratamento de exceções
 
 ## Como Executar
+
+### Docker
+
+```
+docker-compose up -d
+```
 
 ### Localmente
 
