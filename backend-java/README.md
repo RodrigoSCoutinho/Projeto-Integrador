@@ -1,8 +1,8 @@
 <h1 align="center">
-  API em Java com Spring Boot para consumir dados do formulário e fazer autenticação de usuário
+  API em Java com Spring Boot para consumir dados do formulário e fazer autenticação de usuário com JWT para acesso ao dashboard
 </h1>
 
-API para consumo de dados de um formulário de contato. A API permite que usuários enviem mensagens de contato preenchendo um formulário com os campos: nome, telefone, e-mail e mensagem. Os dados são validados e armazenados no banco de dados. Além disso, um e-mail de confirmação é enviado para o endereço de e-mail fornecido pelo usuário, confirmando o recebimento da mensagem de contato. Além disso, a API possui um sistema de segurança para proteger os dados dos usuários usando Spring Security.
+API para consumo de dados de um formulário de contato. A API permite que usuários enviem mensagens de contato preenchendo um formulário com os campos: nome, telefone, e-mail e mensagem. Os dados são validados e armazenados no banco de dados. Além disso, um e-mail de confirmação é enviado para o endereço de e-mail fornecido pelo usuário, confirmando o recebimento da mensagem de contato. Além disso, a API possui um sistema de segurança para autenticar os usuários para o acesso ao dashboard usando Spring Security.
 
 ## Tecnologias
 
@@ -29,6 +29,20 @@ API para consumo de dados de um formulário de contato. A API permite que usuár
 
 [✅] Implementar um sistema de segurança para proteger os dados dos usuários, garantindo que apenas usuários autorizados possam acessar as informações do dashboard.
 
+[✅] A senha do usuário deve ser criptografada antes de ser armazenada no banco de dados, garantindo a segurança dos dados.
+
+[✅] Implementar um sistema de autenticação baseado em tokens JWT (JSON Web Tokens) para proteger as rotas do dashboard.
+
+[✅] Permitir que os usuários façam login no sistema usando um nome de usuário e senha válidos.
+
+[✅] Retornar um token JWT válido para os usuários autenticados, permitindo que eles acessem as rotas protegidas do dashboard.
+
+[✅] Resolver o erro de cors que ocorre ao tentar acessar a API de um domínio diferente.
+
+[] Documentar a API usando o Swagger, fornecendo informações detalhadas sobre os endpoints disponíveis e como usá-los.
+
+[] Implementar testes automatizados para garantir a qualidade e integridade do código.
+
 ## Práticas adotadas
 
 -   SOLID
@@ -36,6 +50,9 @@ API para consumo de dados de um formulário de contato. A API permite que usuár
 -   Injeção de Dependências
 -   Auditoria sobre criação e atualização da entidade
 -   Segurança com Spring Security
+-   JWT Token
+-   Validação de dados com Bean Validation
+-   Tratamento de exceções
 
 ## Como Executar
 
@@ -64,7 +81,7 @@ A API poderá ser acessada em [localhost:8081](http://localhost:8081).
 -   POST /api/contato
 
 ```
-http POST :8081/api/contato
+http POST :8081/api/v1/contato
 
 HTTP/1.1 200 OK
 Content-Length: 129
@@ -79,10 +96,10 @@ Content-Type: application/json
 }
 ```
 
--   POST /api/contato
+-   POST /api/v1/usuarios
 
 ```
-http POST :8081/api/login
+http POST :8081/api/usuarios
 
 HTTP/1.1 200 OK
 Content-Length: 129
@@ -90,7 +107,10 @@ Content-Type: application/json
 
 
 {
+    "login": "RodrigoTeste",
     "name": "Rodrigo",
     "senha": "123"
 }
 ```
+
+obs: a senha é criptografada antes de ser salva no banco de dados
