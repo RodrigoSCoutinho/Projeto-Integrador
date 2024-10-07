@@ -78,14 +78,14 @@ docker-compose up -d
 java -jar backend-java/target/backend-java-0.0.1-SNAPSHOT.jar
 ```
 
-A API poderá ser acessada em [localhost:8081](http://localhost:8081).
+A API poderá ser acessada em [localhost:8080](http://localhost:8080).
 
 -   Clonar repositório git
 -   Construir o projeto:
 
 ## API Endpoints
 
--   POST /api/contato
+-   POST /contato
 
 ```
 http POST :8081/api/v1/contato
@@ -103,10 +103,10 @@ Content-Type: application/json
 }
 ```
 
--   POST /api/v1/usuarios
+-   POST /usuarios
 
 ```
-http POST :8081/api/usuarios
+http POST :8080/usuarios
 
 HTTP/1.1 200 OK
 Content-Length: 129
@@ -119,5 +119,21 @@ Content-Type: application/json
     "senha": "123"
 }
 ```
+
+
+```
+http POST :8080/login
+
+HTTP/1.1 200 OK
+Content-Length: 129
+Content-Type: application/json
+
+
+{
+    "login": "RodrigoTeste",
+    "senha": "123"
+}
+```
+
 
 obs: a senha é criptografada antes de ser salva no banco de dados
