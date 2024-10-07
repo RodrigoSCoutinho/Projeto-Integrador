@@ -4,6 +4,7 @@ public class SalutarToken {
     private String token;
 
     public SalutarToken(String token) {
+        super();
         this.token = token;
     }
 

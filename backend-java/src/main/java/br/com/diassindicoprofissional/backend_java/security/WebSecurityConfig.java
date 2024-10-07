@@ -19,10 +19,7 @@ public class WebSecurityConfig {
                 .authorizeRequests()
                 .requestMatchers(HttpMethod.POST, "/usuarios").permitAll()
                 .requestMatchers(HttpMethod.POST, "/login").permitAll()
-                .requestMatchers("/api/v1/login").permitAll()
-                .requestMatchers("/api/v1/usuarios").permitAll()
-
-                .anyRequest().authenticated();
+                .anyRequest().authenticated().and().cors();
 
         http.addFilterBefore(new MyFilter(), UsernamePasswordAuthenticationFilter.class);
         return http.build();

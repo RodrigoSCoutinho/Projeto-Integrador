@@ -16,23 +16,13 @@ public class Usuario {
     private Integer id;
 
     @Column(name = "nome_usuario", length = 45)
-    private String name;
+    private String nome;
 
     @Column(name = "login", length = 45)
     private String login;
 
     @Column(name = "senha", length = 100)
     private String senha;
-
-    public Usuario() {
-    }
-
-    public Usuario(Integer id, String name, String login, String senha) {
-        this.id = id;
-        this.name = name;
-        this.login = login;
-        this.senha = senha;
-    }
 
     public Integer getId() {
         return id;
@@ -42,12 +32,12 @@ public class Usuario {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNome() {
+        return nome;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getLogin() {
@@ -68,6 +58,6 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario [id=" + id + ", login=" + login + ", name=" + name + ", senha=" + senha + "]";
+        return "Usuario [id=" + id + ", login=" + login + ", nome=" + nome + ", senha=" + senha + "]";
     }
 }
