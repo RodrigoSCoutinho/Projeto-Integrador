@@ -9,11 +9,11 @@
             <label for="floatingInput">Seu Login</label>
         </div>
         <div class="form-floating">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" [(ngModel)]="usuario.password" (keyup.enter)="login()">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" [(ngModel)]="usuario.senha" (keyup.enter)="logar()">
             <label for="floatingPassword">Sua Senha</label>
         </div>        
     
-        <button class="btn btn-primary w-100 py-2" type="button" (click)="login()" >Sign in</button>
+        <button class="btn btn-primary w-100 py-2" type="button" (click)="logar()" >Acessar</button>
 
         <span id="msg" *ngIf="message != ''">{{message }}</span>
         

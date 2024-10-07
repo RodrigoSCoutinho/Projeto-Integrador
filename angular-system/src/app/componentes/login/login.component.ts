@@ -17,28 +17,23 @@ export class LoginComponent {
 
   public constructor(
     private route: Router, 
-    private loginService: LoginService
-  ) { 
-    
+    private service: LoginService) { 
   }
 
-  public ngOnInit() {
-  }
-
-  public login(){
+  public logar(){
     this.loading = true;
-    this.loginService.login(this.usuario).subscribe(
-      (res: SalutarToken) => {
+    this.service.efetuarLogin(this.usuario).subscribe(
+    {
+      next: (res: SalutarToken) => {
         this.loading = false;
         localStorage.setItem('token', res.token);
         this.route.navigate(['main']);
-        console.log("Deu certo o login");
       },
-      (err: any) => {
-        this.message = "User/Password invalid";
+      error: (err: any) => {
+        this.message = "Usuario/Senha Invalidos";
         this.loading = false;
+         }
       }
     );
-    console.log("login");
   }
 }

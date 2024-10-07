@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Usuario } from '../models/Usuario';
-import { Observable } from 'rxjs';
 import { SalutarToken } from '../models/SalutarToken';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 
 @Injectable({
@@ -14,7 +14,7 @@ export class LoginService {
     private http: HttpClient
   ) { }
 
-  public login(usuario: Usuario): Observable<SalutarToken>{
+  public efetuarLogin(usuario: Usuario): Observable<SalutarToken>{
     return this.http.post<SalutarToken>(environment.apiUrl + "/login", usuario);
   }
 }
