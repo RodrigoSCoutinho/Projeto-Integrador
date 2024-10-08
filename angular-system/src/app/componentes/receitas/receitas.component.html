@@ -1,18 +1,16 @@
-
-
 	<section id="sidebar">
 		<a href="#" class="brand">
             <i class='bx bxs-briefcase'></i>
 			<span class="text">Dias Sindico</span>
 		</a>
 		<ul class="side-menu top">
-			<li class="active">
-				<a href="#">
+			<li>
+                <a routerLink="/main">
 					<i class='bx bxs-dashboard' ></i>
 					<span class="text">Dashboard</span>
 				</a>
 			</li>
-			<li>
+			<li class="active">
                 <a routerLink="/receitas">
 					<i class='bx bxs-doughnut-chart' ></i>
 					<span class="text">Receitas</span>
@@ -26,8 +24,8 @@
 			</li>
 			<li>
                 <a routerLink="/pagamentos">
-					<i class='bx bxs-credit-card' ></i>
-					<span class="text">Pagamentos pendentes</span>
+                    <i class='bx bxs-credit-card' ></i>
+                    <span class="text">Pagamentos pendentes</span>
 				</a>
 			</li>
 		</ul>
@@ -38,8 +36,8 @@
 					<span class="text">Configurações</span>
 				</a>
 			</li>
-			<li>
-                <a routerLink="/login" class="logout" (click)="logout()">
+            <li>
+                <a routerLink="/">
 					<i class='bx bxs-log-out-circle' ></i>
 					<span class="text">Sair</span>
 				</a>
@@ -70,46 +68,22 @@
 		<main>
 			<div class="head-title">
 				<div class="left">
-					<h1>Dashboard</h1>
+					<h1>Receitas</h1>
 					<ul class="breadcrumb">
 						<li>
-							<a href="#">Dashboard</a>
+							<a href="dashboard.html">Dashboard</a>
 						</li>
 						<li><i class='bx bx-chevron-right' ></i></li>
 						<li>
-							<a class="active" href="#">Visão Geral</a>
+							<a class="active" href="#">Receitas</a>
 						</li>
 					</ul>
 				</div>
-				<a href="#" class="btn-download" id="downloadReport">
-					<i class='bx bxs-cloud-download' ></i>
-					<span class="text">Download Relatório</span>
+				<a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addReceitaModal">
+					<i class='bx bx-plus'></i>
+					<span class="text">Adicionar Receita</span>
 				</a>
 			</div>
-
-			<ul class="box-info">
-				<li>
-					<i class='bx bxs-wallet' ></i>
-					<span class="text">
-						<h3>R$50.000,00</h3>
-						<p>Saldo Atual</p>
-					</span>
-				</li>
-				<li>
-					<i class='bx bxs-bar-chart-alt-2' ></i>
-					<span class="text">
-						<h3>R$15.000,00</h3>
-						<p>Receitas Mês</p>
-					</span>
-				</li>
-				<li>
-					<i class='bx bxs-error' ></i>
-					<span class="text">
-						<h3>R$8.000,00</h3>
-						<p>Despesas Mês</p>
-					</span>
-				</li>
-			</ul>
 
 			<div class="table-data">
 				<div class="order">
@@ -129,67 +103,23 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td>Aluguel de imóvel</td>
-								<td>R$5.000,00</td>
-								<td>05-09-2024</td>
-								<td><span class="status completed">Recebido</span></td>
-							</tr>
-							<tr>
 								<td>Serviço de Consultoria</td>
 								<td>R$3.500,00</td>
 								<td>10-09-2024</td>
 								<td><span class="status pending">Pendente</span></td>
 							</tr>
+							<tr>
+								<td>Venda de Produtos</td>
+								<td>R$8.000,00</td>
+								<td>15-09-2024</td>
+								<td><span class="status completed">Recebido</span></td>
+							</tr>
 						</tbody>
 					</table>
 				</div>
-				<div class="todo">
-					<div class="head">
-						<h3>Despesas Recentes</h3>
-						<i class='bx bx-plus' data-bs-toggle="modal" data-bs-target="#addDespesaModal"></i>
-						<i class='bx bx-filter' ></i>
-					</div>
-					<ul class="todo-list">
-						<li class="completed">
-							<p>Pagamento de Fornecedor</p>
-							<i class='bx bx-dots-vertical-rounded' ></i>
-						</li>
-						<li class="not-completed">
-							<p>Manutenção de Equipamentos</p>
-							<i class='bx bx-dots-vertical-rounded' ></i>
-						</li>
-					</ul>
-				</div>
 			</div>
 
-			<div class="modal fade" id="addDespesaModal" tabindex="-1" aria-labelledby="addDespesaModalLabel" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title" id="addDespesaModalLabel">Adicionar Despesa</h5>
-							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-						</div>
-						<div class="modal-body">
-							<form id="addFormDespesa">
-								<div class="mb-3">
-									<label for="description" class="form-label">Descrição</label>
-									<input type="text" class="form-control" id="description" placeholder="Descrição" required>
-								</div>
-								<div class="mb-3">
-									<label for="value" class="form-label">Valor (R$)</label>
-									<input type="number" class="form-control" id="value" placeholder="Valor" required>
-								</div>
-								<div class="mb-3">
-									<label for="date" class="form-label">Data</label>
-									<input type="date" class="form-control" id="date" required>
-								</div>
-								<button type="submit" class="btn btn-primary">Cadastrar</button>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-
+			<!-- Modal para cadastrar Receita -->
 			<div class="modal fade" id="addReceitaModal" tabindex="-1" aria-labelledby="addReceitaModalLabel" aria-hidden="true">
 				<div class="modal-dialog">
 					<div class="modal-content">
@@ -219,3 +149,4 @@
 			</div>
 		</main>
 	</section>
+	
