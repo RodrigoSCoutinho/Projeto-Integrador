@@ -10,10 +10,10 @@ import { PagamentosComponent } from './componentes/pagamentos/pagamentos.compone
 const routes: Routes = [
   {path: "", component: LoginComponent},
   {path: "main", component: MainComponent, canActivate: [authGuard]},
-  { path: 'receitas', component: ReceitasComponent },
-  { path: 'despesas', component: DespesasComponent },
-  { path: 'pagamentos', component: PagamentosComponent },
-  { path: '**', redirectTo: 'dashboard' }
+  { path: "receitas", component: ReceitasComponent, canActivate: [authGuard]},
+  { path: "despesas", component: DespesasComponent, canActivate: [authGuard] },
+  { path: "pagamentos", component: PagamentosComponent, canActivate: [authGuard]},
+  { path: "**", redirectTo: "" }
 ];
 
 @NgModule({
