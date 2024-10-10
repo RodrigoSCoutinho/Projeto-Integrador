@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DespesasComponent } from './componentes/despesas/despesas.component';
 import { ReceitasComponent } from './componentes/receitas/receitas.component';
 import { PagamentosComponent } from './componentes/pagamentos/pagamentos.component';
+import { SignupComponent } from './componentes/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { PagamentosComponent } from './componentes/pagamentos/pagamentos.compone
     MainComponent,
     DespesasComponent,
     ReceitasComponent,
-    PagamentosComponent
+    PagamentosComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
