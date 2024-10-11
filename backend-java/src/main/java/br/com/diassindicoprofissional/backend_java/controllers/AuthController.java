@@ -15,8 +15,7 @@ import br.com.diassindicoprofissional.backend_java.security.SalutarToken;
 import br.com.diassindicoprofissional.backend_java.services.User.IAuthService;
 
 @RestController
-@CrossOrigin(origins = "http://127.0.0.1:5501")
-@RequestMapping("/api/v1/")
+@CrossOrigin(origins = "http://localhost:4200")
 public class AuthController {
 
     @Autowired
@@ -27,19 +26,18 @@ public class AuthController {
         System.out.println("Dados recebidos: " + novo);
         Usuario res = service.criarUsuario(novo);
         if (res != null) {
-            return ResponseEntity.status(HttpStatus.CREATED).body(res);
-        } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            return ResponseEntity.ok(res);
         }
+            return ResponseEntity.badRequest().build();
     }
 
-    @GetMapping("/login")
-    public ResponseEntity<SalutarToken> login(@RequestBody Usuario dadosLogin) {
+    @PostMapping("/login")
+    public ResponseEntity<SalutarToken> efetuarLogin(@RequestBody Usuario dadosLogin) {
+        System.out.println("Dados recebidos: " + dadosLogin);
         SalutarToken token = service.realizarLogin(dadosLogin);
         if (token != null) {
-            return ResponseEntity.status(HttpStatus.OK).body(token);
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+            return ResponseEntity.ok(token);
         }
+        return ResponseEntity.badRequest().build();
     }
 }

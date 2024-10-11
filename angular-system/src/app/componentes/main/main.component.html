@@ -1,16 +1,4 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="./css/dashboard.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-	<title>Dashboard Financeiro</title>
-</head>
-<body>
 
 	<section id="sidebar">
 		<a href="#" class="brand">
@@ -25,21 +13,21 @@
 				</a>
 			</li>
 			<li>
-				<a href="./receitas.html">
+                <a routerLink="/receitas">
 					<i class='bx bxs-doughnut-chart' ></i>
 					<span class="text">Receitas</span>
 				</a>
 			</li>
 			<li>
-				<a href="./despesas.html">
+                <a routerLink="/despesas">
 					<i class='bx bxs-bar-chart-alt-2' ></i>
 					<span class="text">Despesas</span>
 				</a>
 			</li>
 			<li>
-				<a href="./pagamentos.html">
+                <a routerLink="/pagamentos">
 					<i class='bx bxs-credit-card' ></i>
-					<span class="text">Pagamentos endentes</span>
+					<span class="text">Pagamentos pendentes</span>
 				</a>
 			</li>
 		</ul>
@@ -51,7 +39,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="./login.html" class="logout">
+                <a routerLink="/login" class="logout" (click)="logout()">
 					<i class='bx bxs-log-out-circle' ></i>
 					<span class="text">Sair</span>
 				</a>
@@ -75,7 +63,7 @@
 			</a>
 			<a href="#" class="profile">
 				<!--TODO <img src="img/people.png"> Imagem do usuário vinda do backend -->
-                <img src="./images/img-sind/logo-marca.jpeg" alt="" srcset="">
+                <img src="assets/logo-marca.jpeg" width="100%">
 			</a>
 		</nav>
 
@@ -231,8 +219,3 @@
 			</div>
 		</main>
 	</section>
-	
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-	<script src="./js/dashboard.js"></script>
-</body>
-</html>

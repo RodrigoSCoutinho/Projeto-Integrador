@@ -24,7 +24,7 @@ public class TokenUtil {
     public static final long MINUTES = 60 * SECONDS;
     public static final long HOURS = 60 * MINUTES;
     public static final long DAYS = 24 * HOURS;
-    public static final long EXPIRATION_TIME = 5 * MINUTES;
+    public static final long EXPIRATION_TIME = 5 * DAYS;
 
     // aqui é o nome do emissor do token (pode ser qualquer coisa)
     public static final String ISSUER = "DiasSindicoProfissional";
@@ -42,7 +42,7 @@ public class TokenUtil {
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
-        return new SalutarToken(PREFIX + " " + jws);
+        return new SalutarToken(PREFIX + jws);
     }
 
     public static Authentication decode(HttpServletRequest request) throws ServletException, IOException {
@@ -64,7 +64,6 @@ public class TokenUtil {
     }
 
     public static boolean isValid(String subject, String issuer, Date exp) {
-        return subject != null && subject.length() > 0 && issuer.equals(ISSUER)
-                && exp.after(new Date(System.currentTimeMillis()));
+        return subject != null && subject.length() > 0 && issuer.equals(ISSUER) && exp.after(new Date(System.currentTimeMillis()));
     }
 }
