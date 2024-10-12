@@ -8,10 +8,10 @@ O objetivo deste trabalho é criar um site para a empresa "Dias Síndico Profiss
 
 Para a realização deste projeto, serão utilizadas as seguintes tecnologias:
 
-- **HTML:** Utilizado para estruturar o conteúdo das páginas web.
-- **CSS:** Utilizado para estilizar e definir o layout das páginas web.
-- **JavaScript:** Utilizado para adicionar interatividade e dinamismo ao site.
+- **React:** Biblioteca JavaScript utilizada para a criação de interfaces de usuário.
+- **TypeScript:** Linguagem de programação utilizada para adicionar tipagem estática ao JavaScript.
 - **Java:** Utilizado para a lógica de backend e processamento de dados.
+- **Flutter:** Framework de desenvolvimento de aplicativos móveis utilizado para a criação de aplicativos para Android e iOS.
 - **PostgreSQL:** Banco de dados relacional utilizado para armazenar informações da empresa e dos clientes.
 - **Figma:** Ferramenta de design utilizada para a criação do layout e protótipos do site.
 - **Excalidraw:** Utilizado para a criação de diagramas e fluxogramas do projeto.
@@ -23,13 +23,16 @@ Para a realização deste projeto, serão utilizadas as seguintes tecnologias:
    - Utilização do Excalidraw para a elaboração de diagramas de fluxo e arquitetura do sistema.
 
 2. **Desenvolvimento Frontend:**
-   - Estruturação das páginas HTML.
-   - Estilização das páginas utilizando CSS.
-   - Adição de funcionalidades e interatividade com JavaScript.
+   - Estruturação das páginas usando componentização com react.
+   - Estilização das páginas utilizando daisyui e tailwindcss.
 
 3. **Desenvolvimento Backend:**
    - Configuração do servidor utilizando Java.
    - Integração com o banco de dados PostgreSQL para armazenamento e recuperação de dados.
+
+4. **Desenvolvimento Mobile:**
+   - Criação de um aplicativo móvel utilizando o framework Flutter.
+   - Integração com o banco de dados PostgreSQL para sincronização de dados entre o site e o aplicativo.
 
 4. **Teste e Implantação:**
    - Realização de testes de funcionalidade e usabilidade.
@@ -41,41 +44,34 @@ O projeto está organizado da seguinte forma:
 
 ```plaintext
 dias-sindico-profissional/
-├── design/
-│   ├── figma/
-│   └── excalidraw/
-├── frontend/
-│   ├── css/
-│   ├── images/
-│   ├── js/
-│   └── index.html
-├── backend-java/
-│   ├── spring/
+├── system/
+│   ├── angular
+│   ├── spring
+├── website/
+│   ├── react/
+│   ├── typescript/
+├── mobile-system/
+│   ├── flutter/
 │   └── postgresql/
 ├── README.md
 └── LICENSE
 ```
 
-- **design:** Contém os arquivos relacionados ao design e prototipagem do site.
-- **frontend:** Contém os arquivos relacionados ao desenvolvimento frontend do site.
-- **backend:** Contém os arquivos relacionados ao desenvolvimento backend do site.
-
 ## Apresentação do Trabalho
 
 Este trabalho está sendo apresentado na disciplina Projeto Integrador I. A apresentação final incluirá uma demonstração ao vivo do site, destacando suas funcionalidades e o processo de desenvolvimento.
 
-## Autores
+## Membros do grupo
 
+- Rodrigo Soares Coutinho 
+- Rebeca Silva Ferreira 
 - Aline Aprigio da luz 
 - Carla Edigania da Silva 
-- Hecktor Julius de Sousa Honorato 
 - João Paulo de Oliveira 
-- Rebeca Silva Ferreira 
-- Rodrigo Soares Coutinho 
-
-
+- Hecktor Julius de Sousa Honorato 
 
 # Agradecimentos 
+
 Aos professores do Instituto Federal do Rio Grande do Norte, pelo apoio e orientação durante o desenvolvimento deste projeto.: 
 
 Sr. Thiago Medeiros Barros e Sr. Filipe de Carvalho Pinto Raulino
