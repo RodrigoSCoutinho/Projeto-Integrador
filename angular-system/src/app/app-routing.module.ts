@@ -6,9 +6,11 @@ import { authGuard } from './auth.guard';
 import { ReceitasComponent } from './componentes/receitas/receitas.component';
 import { DespesasComponent } from './componentes/despesas/despesas.component';
 import { PagamentosComponent } from './componentes/pagamentos/pagamentos.component';
+import { SignupComponent } from './componentes/signup/signup.component';
 
 const routes: Routes = [
-  {path: "", component: LoginComponent},
+  { path: "", component: SignupComponent },
+  {path: "login", component: LoginComponent},
   {path: "main", component: MainComponent, canActivate: [authGuard]},
   { path: "receitas", component: ReceitasComponent, canActivate: [authGuard]},
   { path: "despesas", component: DespesasComponent, canActivate: [authGuard] },

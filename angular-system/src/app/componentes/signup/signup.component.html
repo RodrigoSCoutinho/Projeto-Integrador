@@ -2,5 +2,31 @@
 <!--Tela que vai receber nome, login e senha-->
 <!-- TODO: CRIAR TELA E FAZER CONEXAO COM O BACKEND -->
 
+<app-wait-icon *ngIf="loading"></app-wait-icon>
+<div class="container">
+    <div class="card">
+        <img src="assets/logo-marca.jpeg" width="100%">
+        <h1 class="h3 mb-3 fw-normal text-center">Please sign in</h1>
+    
+        <div class="form-floating mb-4">
+            <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" [(ngModel)]="usuario.login">
+            <label for="floatingInput">Seu Login</label>
+        </div>
+        <div class="form-floating mb-4">
+            <input type="text" class="form-control" id="floatingInput" placeholder="name" [(ngModel)]="usuario.nome">
+            <label for="floatingInput">Seu Nome</label>
+        </div>
+        <div class="form-floating mb-4">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" [(ngModel)]="usuario.senha" (keyup.enter)="criarLogin()">
+            <label for="floatingPassword">Sua Senha</label>
+        </div>        
+    
+        <button class="btn btn-primary w-100 py-2 mb-4" type="button" (click)="criarLogin()" >Acessar</button>
 
-<p>Tela de criar login</p>
+        <a routerLink="/login">Já tenho um login</a>
+        
+        <span id="msg" *ngIf="message != ''">{{message }}</span>
+        
+    </div>
+</div>
+

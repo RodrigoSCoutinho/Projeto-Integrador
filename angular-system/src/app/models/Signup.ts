@@ -1,5 +1,5 @@
 export class Signup {
     login: string = '';
-    name: string = '';
+    nome: string = '';
     senha: string = '';
 }
