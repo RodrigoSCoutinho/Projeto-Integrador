@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "aos": "^2.3.4",
+    "clsx": "^2.1.1",
     "frontend-react": "file:",
     "leaflet": "^1.9.4",
     "react": "^18.3.1",
