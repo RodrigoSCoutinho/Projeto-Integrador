@@ -23,7 +23,6 @@ public class AuthController {
 
     @PostMapping("/usuarios")
     public ResponseEntity<Usuario> adicionarNovo(@RequestBody Usuario novo) {
-        System.out.println("Dados recebidos: " + novo);
         Usuario res = service.criarUsuario(novo);
         if (res != null) {
             return ResponseEntity.ok(res);
@@ -33,7 +32,6 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<SalutarToken> efetuarLogin(@RequestBody Usuario dadosLogin) {
-        System.out.println("Dados recebidos: " + dadosLogin);
         SalutarToken token = service.realizarLogin(dadosLogin);
         if (token != null) {
             return ResponseEntity.ok(token);
