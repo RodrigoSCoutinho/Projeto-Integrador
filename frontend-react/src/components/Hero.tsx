@@ -1,6 +1,12 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
-const Hero = () => {
+function Hero() {
+    useEffect(() => {
+        AOS.init({ duration: 1000 });
+    }, []);
+
     const [formData, setFormData] = useState({
         nome: '',
         telefone: '',
@@ -11,7 +17,7 @@ const Hero = () => {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setFormData({
             ...formData,
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value,
         });
     };
 
@@ -37,54 +43,53 @@ const Hero = () => {
             alert('Erro ao enviar a mensagem, tente novamente.');
         }
     };
+
     return (
-        <div className="pt-32" id="home">
-            <div className="">
-                <div className="hero-content flex-col lg:flex-row-reverse justify-between my-6">
-                    <img
-                        src="slide1.jpeg"
-                        className="max-w-lg rounded-md animate-slideIn" />
-                    <div className=" w-1/2 animate-fade">
-                        <h1 className="text-6xl font-bold">Excelência em Gestão Condominial para um Futuro Melhor</h1>
-                        <p className="py-6 text-2xl my-3">
-                            Na Dias Síndico Profissional, estamos comprometidos em oferecer soluções inovadoras e eficazes
-                            para a gestão de condomínios, estabelecendo relações duradouras e de confiança com nossos clientes.
-                        </p>
-                        <a href="#form">
-                            <button className="py-4 px-20 rounded-md font-bold text-xl bg-black border-2 border-yellow-600 mr-7">Saiba mais</button>
-                        </a>
-                        <a href="https://api.whatsapp.com/send?l=pt&phone=5584991553030&text=Olá, gostaria de saber mais sobre serviços da Dias Sindico Profissional!" target="_blank">
-                            <button className="py-4 px-20 rounded-md font-bold text-xl bg-warning text-black">Fale conosco!</button>
-                        </a>
-                    </div>
+        <div className="pt-16 max-w-screen-xl mx-auto" id="home">
+            <div data-aos="fade-up" className="flex flex-col lg:flex-row justify-between my-6 px-8 md:px-0">
+                <div className="lg:w-1/2">
+                    <h1 className="lg:text-6xl text-4xl font-bold">Excelência em Gestão Condominial para um Futuro Melhor</h1>
+                    <p className="py-6 lg:text-2xl text-xl my-3">
+                        Na Dias Síndico Profissional, estamos comprometidos em oferecer soluções inovadoras e eficazes
+                        para a gestão de condomínios, estabelecendo relações duradouras e de confiança com nossos clientes.
+                    </p>
+                    <a href="#form">
+                        <button className="py-4 px-20 rounded-md font-bold text-xl bg-black border-2 border-yellow-600 mr-7">Saiba mais</button>
+                    </a>
+                    <a href="https://api.whatsapp.com/send?l=pt&phone=5584991553030&text=Olá, gostaria de saber mais sobre serviços da Dias Sindico Profissional!" target="_blank">
+                        <button className="py-4 px-20 rounded-md font-bold text-xl bg-warning text-black my-5 sm:my-0">Fale conosco!</button>
+                    </a>
                 </div>
+                <img
+                    src="slide1.jpeg"
+                    className="max-w-lg rounded-md my-8 sm:my-0" />
             </div>
-            <div className="bg-white rounded-3xl flex justify-around text-black py-20 font-bold text-3xl my-20">
-                <div>
-                    <img src="3.png" alt="" className="h-52 pb-5" />
+            <div data-aos="fade-left" className="bg-white md:rounded-3xl lg:flex-row justify-around flex-col sm:flex text-black py-20 font-bold text-3xl my-20">
+                <div className='text-center'>
+                    <img src="3.png" alt="" className="h-32 sm:h-52 my-5 mx-auto" />
                     <h1>Equipe Qualificada</h1>
                 </div>
-                <div>
+                <div className='text-center'>
+                    <img src="2.png" alt="" className="h-32 sm:h-52 my-5 mx-auto" />
                     <h1>Serviço de Excelência</h1>
-                    <img src="2.png" alt="" className="h-52 pt-5" />
                 </div>
-                <div>
-                    <img src="1.png" alt="" className="h-52 pb-5" />
+                <div className='text-center'>
+                    <img src="1.png" alt="" className="h-32 lg:h-52 my-5 mx-auto" />
                     <h1>Compromisso</h1>
                 </div>
             </div>
 
-            <div className="max-w-3xl mx-auto text-center border-t border-gray-400 w-full py-5">
+            <div data-aos="fade-right" className="max-w-3xl mx-auto text-center py-5">
                 <p className="py-6 text-lg" id="services">
                     NOSSOS SERVIÇOS
                 </p>
-                <h1 className="text-6xl font-bold mb-10">Os serviços que oferecemos são projetados especificamente
-                    para atender às suas necessidades!
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-10">
+                    Os serviços que oferecemos são projetados especificamente para atender às suas necessidades!
                 </h1>
             </div>
 
-            <div className="flex gap-4 pb-20 animate-slideTop">
-                <div className="max-w-sm p-6 border rounded-lg shadow bg-black border-yellow-400 text-center">
+            <div data-aos="fade-up" className="flex flex-col lg:flex-row gap-4 pb-20 m-8 sm:m-0">
+                <div className="mx-auto max-w-sm p-6 border rounded-lg shadow bg-black border-yellow-400 text-center">
                     <h5 className="mb-2 text-2xl font-bold text-gray-900 dark:text-white">Gestão</h5>
                     <h5 className="mb-2 text-2xl font-bold text-gray-900 dark:text-white">Condominial</h5>
 
@@ -97,7 +102,7 @@ const Hero = () => {
                         </svg>
                     </a>
                 </div>
-                <div className="max-w-sm p-6 border rounded-lg shadow bg-black dark:border-yellow-400 text-center">
+                <div className="mx-auto max-w-sm p-6 border rounded-lg shadow bg-black dark:border-yellow-400 text-center">
                     <h5 className="mb-2 text-2xl font-bold text-gray-900 dark:text-white">Consultoria Especializada</h5>
 
                     <p className="mb-3 text-gray-600 dark:text-gray-400 text-lg">Nossa equipe de especialistas oferece consultoria personalizada para otimizar a administração do seu condomínio.</p>
@@ -108,7 +113,7 @@ const Hero = () => {
                         </svg>
                     </a>
                 </div>
-                <div className="max-w-sm p-6 border rounded-lg shadow bg-black dark:border-yellow-400 text-center">
+                <div className="mx-auto max-w-sm p-6 border rounded-lg shadow bg-black dark:border-yellow-400 text-center">
                     <h5 className="mb-2 text-2xl font-bold text-gray-900 dark:text-white">Transparência Financeira</h5>
 
                     <p className="mb-3 text-gray-600 dark:text-gray-400 text-lg">Garantimos total transparência na gestão financeira, com relatórios detalhados e acessíveis para todos os moradores.</p>
@@ -119,7 +124,7 @@ const Hero = () => {
                         </svg>
                     </a>
                 </div>
-                <div className="max-w-sm p-6 border rounded-lg shadow bg-black dark:border-yellow-400 text-center">
+                <div className="mx-auto max-w-sm p-6 border rounded-lg shadow bg-black dark:border-yellow-400 text-center">
                     <h5 className="mb-2 text-2xl font-bold text-gray-900 dark:text-white">Segurança e Conformidade</h5>
 
                     <p className="mb-3 text-gray-600 dark:text-gray-400 text-lg">Asseguramos que todas as operações estejam em conformidade com as normas legais, garantindo segurança jurídica para o condomínio.</p>
@@ -131,57 +136,15 @@ const Hero = () => {
                     </a>
                 </div>
             </div>
+            <div className='border-t border-gray-500 w-full h-10'></div>
 
-            <div className="flex py-20 border-t border-gray-400" id="about">
-                <img
-                    src="orcamento.jpeg"
-                    className="w-1/2 rounded-lg shadow-2xl" />
-                <div className="px-7 p" id="about">
-                    <h3 className="text-3xl text-yellow-400">Por que nos escolher?</h3>
-                    <h1 className="text-3xl font-bold py-8">
-                        Oferecemos soluções para facilitar a vida dos nossos clientes.
-                    </h1>
-
-                    <div className="pl-9 mb-5 border border-yellow-600 p-5 rounded-lg">
-                        <div className="flex items-center gap-4">
-                            <svg className="left-1 top-1 h-5 w-5 text-green-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                            </svg>
-                            <h1 className="font-semibold text-white flex text-xl">
-                                Gestão Profissional
-                            </h1>
-                        </div>
-                        <h2 className="text-lg pt-2">Nossa equipe é especializada em administração condominial, oferecendo serviços de alta qualidade e garantindo a satisfação dos moradores.</h2>
-                    </div>
-                    <div className="pl-9 mb-5 border border-yellow-600 p-5 rounded-lg">
-                        <div className="flex items-center gap-4">
-                            <svg className="left-1 top-1 h-5 w-5 text-green-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                            </svg>
-                            <h1 className="font-semibold text-white flex text-xl">
-                                Suporte Excepcional
-                            </h1>
-                        </div>
-                        <h2 className="text-lg pt-2">Oferecemos suporte contínuo e eficiente, sempre prontos para resolver qualquer questão ou necessidade dos nossos clientes.</h2>
-                    </div>
-                    <div className=" border border-yellow-600 p-5 rounded-lg">
-                        <div className="flex items-center gap-4">
-                            <svg className="left-1 top-1 h-5 w-5 text-green-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                            </svg>
-                            <h1 className="font-semibold text-white flex text-xl">
-                                Transparência e Confiabilidade
-                            </h1>
-                        </div>
-                        <h2 id="form" className="text-lg pt-2">Priorizamos a transparência em todas as nossas ações, garantindo confiança e segurança para todos os moradores do condomínio.</h2>
-                    </div>
-
-                </div>
-            </div>
-
-            <div className="flex my-10 gap-10" id="form">
-            <form className="flex flex-1 flex-col w-2/5 p-8 border rounded-lg border-gray-800" onSubmit={handleSubmit}>
-                    <div className="flex gap-5 justify-between">
+            <div className="flex flex-col lg:flex-row my-10 gap-10 mx-4 sm:mx-0" id="form">
+                <form
+                    data-aos="fade-up"
+                    className="flex flex-1 flex-col w-full lg:w-2/5 sm:p-8 p-4 border rounded-lg"
+                    onSubmit={handleSubmit}
+                >
+                    <div className="flex flex-col sm:flex-row gap-5 justify-between">
                         <div className="form-control flex-1">
                             <label className="label">
                                 <span className="label-text">Nome</span>
@@ -233,18 +196,20 @@ const Hero = () => {
                         onChange={handleChange}
                     ></textarea>
                     <div className="form-control mt-6">
-                        <button className="btn btn-primary" type="submit">Enviar</button>
+                        <button className="btn btn-primary" type="submit">
+                            Enviar
+                        </button>
                     </div>
                 </form>
-                {/* <MapComponent /> */}
+
                 <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3969.4695431719238!2d-35.1968856!3d-5.7891524!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7b30014c0c89323%3A0x211634fef633c8f9!2sR.%20Mossor%C3%B3%2C%20746%20-%20Cidade%20Alta%2C%20Natal%20-%20RN%2C%2059025-090!5e0!3m2!1spt-BR!2sbr!4v1724532393556!5m2!1spt-BR!2sbr"
-                    className="w-3/5 rounded-lg">
-                </iframe>
+                    className="w-full lg:w-3/5 rounded-lg lg:px-10 px-5"
+                ></iframe>
             </div>
-            <div className="my-20">
+            <div data-aos="fade-up" className="my-20 px-8">
                 <h1 className="text-3xl font-bold text-center py-16">Alguns clientes parceiros</h1>
-                <div className="flex justify-between h-48">
+                <div className="flex justify-around flex-wrap mx-auto gap-8">
                     <img src="p1.jpg" alt="" />
                     <img src="p2.png" alt="" />
                     <img src="p3.png" alt="" />

@@ -1,22 +1,22 @@
 const Footer = () => {
     return (
-        <footer className="footer p-10 text-lg flex justify-around mt-40 pb-20 border-t border-gray-400 w-full mx-auto">
-            <nav className="pt-10 w-1/4 pl-16">
+        <footer className="footer p-10 text-lg flex flex-col md:flex-row justify-around mt-40 pb-20 w-full mx-auto border-t border-gray-500">
+            <nav className="pt-10 w-full md:w-1/4 pl-0 md:pl-16 mb-10 md:mb-0">
                 <h6 className="footer-title">Links</h6>
                 <a className="link link-hover">Sobre Nós</a>
                 <a className="link link-hover">Serviços</a>
                 <a className="link link-hover">Dashboard</a>
             </nav>
-            <nav className="pt-10 w-1/4">
+            <nav className="pt-10 w-full md:w-1/4 mb-10 md:mb-0">
                 <h6 className="footer-title">Contato</h6>
                 <a className="link link-hover">(84) 99155-3030</a>
                 <a className="link link-hover">dias.sindicos@gmail.com</a>
                 <a className="link link-hover">Rua Mossoro, 746, Natal, Rio Grande do Norte</a>
             </nav>
-            <nav className="pt-10 w-1-4 pr-16">
+            <nav className="pt-10 w-full md:w-1/4 pr-0 md:pr-16">
                 <h6 className="footer-title">Social</h6>
                 <div className="grid grid-flow-col gap-4">
-                    <a  href="https://www.instagram.com/dias.sindico/">
+                    <a href="https://www.instagram.com/dias.sindico/">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="24"
@@ -55,4 +55,4 @@ const Footer = () => {
     )
 }
 
-export default Footer
+export default Footer;

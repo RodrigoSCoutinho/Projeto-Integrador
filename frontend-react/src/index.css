@@ -1,9 +1,30 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
-
-@import 'leaflet/dist/leaflet.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 body {
     background-color: black; /* Cor de fundo */
+}
+
+/* Exibir o hamburguer menu apenas em telas menores que 1024px */
+@media (max-width: 1024px) {
+    .lg\\:hidden {
+        display: block;
+    }
+    
+    /* Esconder o menu completo em telas pequenas */
+    .lg\\:block {
+        display: none;
+    }
+}
+
+/* Exibir o menu completo em telas maiores */
+@media (min-width: 1024px) {
+    .lg\\:block {
+        display: flex;
+    }
+    
+    .lg\\:hidden {
+        display: none;
+    }
 }
