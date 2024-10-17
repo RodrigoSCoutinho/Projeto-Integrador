@@ -5,10 +5,6 @@
   }
 }
 
-.card {
-  padding: 2em;
-}
-
 #msg {
   margin-top: 5px;
   height: 2em;
@@ -18,4 +14,78 @@
   color: red;
   font-weight: bold;
   background-color: rgb(242, 168, 168);
+}
+
+/* Fundo degradê preto e amarelo na tela inteira */
+body,
+html {
+  height: 100%;
+  margin: 0;
+  background: linear-gradient(135deg, #ffd700, #000000);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Container do card centralizado */
+.container {
+  height: 100%;
+}
+
+/* Card transparente e elegante */
+.card {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.9
+  ); /* Fundo semi-transparente do card */
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos adicionais para inputs e elementos */
+img {
+  object-fit: cover;
+  width: 200px;
+  height: 100px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+h1,
+label {
+  color: #333;
+}
+
+.form-control {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  border: 1px solid #ccc;
+}
+
+.form-control:focus {
+  border-color: #ffd700;
+  box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+}
+
+.btn-primary {
+  background-color: #ffd700;
+  border-color: #ffd700;
+  color: #000;
+}
+
+.btn-primary:hover {
+  background-color: #e6c200;
+}
+
+a {
+  color: #ffd700;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.text-danger {
+  color: red;
 }

@@ -1,8 +1,10 @@
 <app-wait-icon *ngIf="loading"></app-wait-icon>
-<div class="container">
-    <div class="card">
-        <img src="assets/logo-marca.jpeg" width="100%">
-        <h1 class="h3 mb-3 fw-normal text-center">Please sign in</h1>
+<div class="container d-flex align-items-center justify-content-center vh-100">
+    <div class="card p-4 shadow-lg rounded-4 bg-opacity-75" style="background-color: rgba(255, 255, 255, 0.8); max-width: 450px; width: 100%;">
+        <div class="text-center mb-4">
+            <img src="assets/logo-marca.jpeg" width="100%" alt="Logo">
+        </div>
+        <h1 class="h4 mb-3 fw-bold text-center">Entrar na minha conta</h1>
     
         <div class="form-floating mb-4">
             <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" [(ngModel)]="usuario.login">
@@ -13,9 +15,8 @@
             <label for="floatingPassword">Sua Senha</label>
         </div>        
     
-        <button class="btn btn-primary w-100 py-2 mb-4" type="button" (click)="logar()" >Acessar</button>
+        <button class="btn btn-primary w-100 py-2 mb-4" type="button" (click)="logar()">Acessar</button>
 
-        <span id="msg" *ngIf="message != ''">{{message }}</span>
-        
+        <span id="msg" *ngIf="message != ''" class="text-danger text-center d-block mt-2">{{message}}</span>
     </div>
 </div>
