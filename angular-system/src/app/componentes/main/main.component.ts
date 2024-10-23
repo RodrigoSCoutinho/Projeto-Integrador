@@ -1,49 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
-interface Reserva {
-  id: number;
-  area: string;
-  morador: string;
-  data: string;
-  status: 'pendente' | 'aprovada' | 'recusada';
-}
-
-interface Despesa {
-  id: number;
-  descricao: string;
-  valor: number;
-  data: string;
-  categoria: string;
-}@Component({
+import { ReservasService } from 'src/app/servicos/reservas.service';
+import { DespesasService } from 'src/app/servicos/despesas.service';
+import { Despesa } from '../../models/Despesa';
+import { Reserva } from '../../models/Reserva';
+@Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-  nomeUsuario = 'João Silva';
+  nomeUsuario = 'Rodrigo Coutinho';
   reservaForm: FormGroup;
   despesaForm: FormGroup;
 
-  areasDisponiveis = [
-    'Salão de Festas',
-    'Churrasqueira',
-    'Quadra',
-    'Academia'
-  ];
-
-  categoriasDespesas = [
-    'Manutenção',
-    'Limpeza',
-    'Segurança',
-    'Água/Luz',
-    'Outros'
-  ];
+  areasDisponiveis = ['SALAO_DE_FESTAS', 'CHURRASQUEIRA', 'ACADEMIA', 'QUADRA'];
+  categoriasDespesas = ['MANUTENCAO', 'LIMPEZA', 'SEGURANÇA', 'AGUA & LUZ', 'OUTROS'];
 
   reservas: Reserva[] = [];
   despesas: Despesa[] = [];
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private reservaService: ReservasService,
+    private despesaService: DespesasService
+  ) {
     this.reservaForm = this.fb.group({
       area: ['', Validators.required],
       morador: ['', Validators.required],
@@ -58,11 +39,24 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.carregarDados();
+    this.carregarReservas();
+    this.carregarDespesas();
+  }
+
+  carregarReservas() {
+    this.reservaService.getReservas().subscribe(reservas => {
+      this.reservas = reservas;
+    });
+  }
+
+  carregarDespesas() {
+    this.despesaService.pegarDespesas().subscribe(despesas => {
+      this.despesas = despesas;
+    });
   }
 
   getReservasPendentes(): number {
-    return this.reservas.filter(r => r.status === 'pendente').length;
+    return this.reservas.filter(r => r.status === 'PENDENTE').length;
   }
 
   get totalDespesas(): number {
@@ -73,65 +67,49 @@ export class MainComponent implements OnInit {
     return new Date(data).toLocaleDateString('pt-BR');
   }
 
-  carregarDados() {
-    // Simular dados de reservas
-    this.reservas = [
-      {
-        id: 1,
-        area: 'Salão de Festas',
-        morador: 'Maria Santos',
-        data: '2024-10-20',
-        status: 'pendente'
-      }
-    ];
-
-    // Simular dados de despesas
-    this.despesas = [
-      {
-        id: 1,
-        descricao: 'Manutenção Elevador',
-        valor: 1500,
-        data: '2024-10-15',
-        categoria: 'Manutenção'
-      }
-    ];
-  }
-
   onSubmitReserva() {
     if (this.reservaForm.valid) {
       const novaReserva: Reserva = {
-        id: this.reservas.length + 1,
+        id: 0,
         ...this.reservaForm.value,
-        status: 'pendente'
+        status: 'PENDENTE'
       };
-      this.reservas.push(novaReserva);
-      this.reservaForm.reset();
+      this.reservaService.criarReserva(novaReserva).subscribe(reserva => {
+        this.reservas.push(reserva);
+        this.reservaForm.reset();
+      });
     }
   }
 
   onSubmitDespesa() {
     if (this.despesaForm.valid) {
       const novaDespesa: Despesa = {
-        id: this.despesas.length + 1,
+        id: 0,
         ...this.despesaForm.value,
         data: new Date().toISOString().split('T')[0]
       };
-      this.despesas.push(novaDespesa);
-      this.despesaForm.reset();
+      this.despesaService.criarDespesa(novaDespesa).subscribe(despesa => {
+        this.despesas.push(despesa);
+        this.despesaForm.reset();
+      });
     }
   }
 
   aprovarReserva(id: number) {
-    const reserva = this.reservas.find(r => r.id === id);
-    if (reserva) {
-      reserva.status = 'aprovada';
-    }
+    this.reservaService.aprovarReserva(id).subscribe(reserva => {
+      const reservaIndex = this.reservas.findIndex(r => r.id === reserva.id);
+      if (reservaIndex >= 0) {
+        this.reservas[reservaIndex] = reserva;
+      }
+    });
   }
 
   recusarReserva(id: number) {
-    const reserva = this.reservas.find(r => r.id === id);
-    if (reserva) {
-      reserva.status = 'recusada';
-    }
+    this.reservaService.recusarReserva(id).subscribe(reserva => {
+      const reservaIndex = this.reservas.findIndex(r => r.id === reserva.id);
+      if (reservaIndex >= 0) {
+        this.reservas[reservaIndex] = reserva;
+      }
+    });
   }
 }

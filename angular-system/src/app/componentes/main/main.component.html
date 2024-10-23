@@ -1,5 +1,3 @@
-<!-- dashboard.component.html -->
-
 <div class="dashboard-container">
 	<nav class="navbar">
 	  <h1>Portal do Síndico</h1>
@@ -81,7 +79,7 @@
 				<td>{{reserva.morador}}</td>
 				<td>{{formatarData(reserva.data)}}</td>
 				<td>
-				  <span [class]="'status status-' + reserva.status">
+				  <span [class]="'status status-' + reserva.status.toLowerCase()">
 					{{reserva.status}}
 				  </span>
 				</td>
@@ -89,13 +87,13 @@
 				  <button 
 					(click)="aprovarReserva(reserva.id)"
 					class="btn-success"
-					*ngIf="reserva.status === 'pendente'">
+					*ngIf="reserva.status === 'PENDENTE'">
 					Aprovar
 				  </button>
 				  <button 
 					(click)="recusarReserva(reserva.id)"
 					class="btn-danger"
-					*ngIf="reserva.status === 'pendente'">
+					*ngIf="reserva.status === 'PENDENTE'">
 					Recusar
 				  </button>
 				</td>
@@ -168,3 +166,4 @@
 	  </section>
 	</div>
   </div>
+  

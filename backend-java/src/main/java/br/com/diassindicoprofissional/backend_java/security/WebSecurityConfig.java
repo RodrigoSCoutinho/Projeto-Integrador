@@ -19,6 +19,22 @@ public class WebSecurityConfig {
                 .authorizeRequests()
                 .requestMatchers(HttpMethod.POST, "/usuarios").permitAll()
                 .requestMatchers(HttpMethod.POST, "/login").permitAll()
+                .requestMatchers(HttpMethod.POST, "/enviar").permitAll()
+                .requestMatchers(HttpMethod.POST, "/reservas").permitAll()
+                .requestMatchers(HttpMethod.POST, "/despesas").permitAll()
+
+                .requestMatchers(HttpMethod.GET, "/usuarios").permitAll()
+                .requestMatchers(HttpMethod.GET, "/login").permitAll()
+                .requestMatchers(HttpMethod.GET, "/enviar").permitAll()
+                .requestMatchers(HttpMethod.GET, "/reservas").permitAll()
+                .requestMatchers(HttpMethod.GET, "/despesas").permitAll()
+
+                .requestMatchers(HttpMethod.GET, "/usuarios/{id}").permitAll()
+                .requestMatchers(HttpMethod.GET, "/login/{id}").permitAll()
+                .requestMatchers(HttpMethod.GET, "/enviar/{id}").permitAll()
+                .requestMatchers(HttpMethod.GET, "/reservas/{id}").permitAll()
+                .requestMatchers(HttpMethod.GET, "/despesas/{id}").permitAll()
+
                 .anyRequest().authenticated().and().cors();
 
         http.addFilterBefore(new MyFilter(), UsernamePasswordAuthenticationFilter.class);
