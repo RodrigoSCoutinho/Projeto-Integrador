@@ -64,6 +64,10 @@ public class Despesas {
         return categoria;
     }
 
+    public void setCategoria(CategoriaDespesa categoria) {
+        this.categoria = categoria;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
