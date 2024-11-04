@@ -37,10 +37,6 @@ class DashboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Dashboard'),
-        backgroundColor: Colors.blueAccent,
-      ),
       body: Container(
         decoration: BoxDecoration(
           color: Colors.grey[200],
@@ -70,6 +66,7 @@ class DashboardScreen extends StatelessWidget {
 
   Widget _buildNavbar() {
     return Container(
+      width: double.infinity,
       padding: const EdgeInsets.all(16.0),
       color: Colors.blueGrey,
       child: Column(
