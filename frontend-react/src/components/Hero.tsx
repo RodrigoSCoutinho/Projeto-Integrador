@@ -8,10 +8,10 @@ function Hero() {
     }, []);
 
     const [formData, setFormData] = useState({
-        nome: '',
-        telefone: '',
+        name: '',
+        phone: '',
         email: '',
-        mensagem: '',
+        message: '',
     });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -25,7 +25,7 @@ function Hero() {
         e.preventDefault();
 
         try {
-            const response = await fetch('http://localhost:8081/api/v1/enviar', {
+            const response = await fetch('http://localhost:8080/enviar', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -154,7 +154,7 @@ function Hero() {
                                 name="nome"
                                 placeholder="Nome"
                                 className="input input-bordered"
-                                value={formData.nome}
+                                value={formData.name}
                                 onChange={handleChange}
                                 required
                             />
@@ -168,7 +168,7 @@ function Hero() {
                                 name="telefone"
                                 placeholder="( __ ) _____ - ____"
                                 className="input input-bordered"
-                                value={formData.telefone}
+                                value={formData.phone}
                                 onChange={handleChange}
                                 required
                             />
@@ -192,7 +192,7 @@ function Hero() {
                         className="textarea mt-5 h-40"
                         name="mensagem"
                         placeholder="Mensagem"
-                        value={formData.mensagem}
+                        value={formData.message}
                         onChange={handleChange}
                     ></textarea>
                     <div className="form-control mt-6">
