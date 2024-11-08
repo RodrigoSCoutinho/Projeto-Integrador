@@ -11,6 +11,7 @@ Para a realização deste projeto, serão utilizadas as seguintes tecnologias:
 - **React:** Biblioteca JavaScript utilizada para a criação de interfaces de usuário.
 - **TypeScript:** Linguagem de programação utilizada para adicionar tipagem estática ao JavaScript.
 - **Java:** Utilizado para a lógica de backend e processamento de dados.
+- **Angular:** Framework de desenvolvimento web utilizado para a criação de sistemas.
 - **Flutter:** Framework de desenvolvimento de aplicativos móveis utilizado para a criação de aplicativos para Android e iOS.
 - **PostgreSQL:** Banco de dados relacional utilizado para armazenar informações da empresa e dos clientes.
 - **Figma:** Ferramenta de design utilizada para a criação do layout e protótipos do site.
@@ -68,7 +69,6 @@ Este trabalho está sendo apresentado na disciplina Projeto Integrador I. A apre
 - Aline Aprigio da luz 
 - Carla Edigania da Silva 
 - João Paulo de Oliveira 
-- Hecktor Julius de Sousa Honorato 
 
 # Agradecimentos 
 

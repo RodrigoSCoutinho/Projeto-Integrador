@@ -1,8 +1,8 @@
 <h1 align="center">
-  API em Java com Spring Boot para consumir dados do formulário e fazer autenticação de usuário com JWT para acesso ao dashboard
+  API em Java com Spring Boot para consumir dados do formulário e fazer autenticação de usuário com JWT para acesso ao sistema
 </h1>
 
-API para consumo de dados de um formulário de contato. A API permite que usuários enviem mensagens de contato preenchendo um formulário com os campos: nome, telefone, e-mail e mensagem. Os dados são validados e armazenados no banco de dados. Além disso, um e-mail de confirmação é enviado para o endereço de e-mail fornecido pelo usuário, confirmando o recebimento da mensagem de contato. Além disso, a API possui um sistema de segurança para autenticar os usuários para o acesso ao dashboard usando Spring Security.
+API para consumo de dados de um formulário de contato. A API permite que usuários enviem mensagens de contato preenchendo um formulário com os campos: nome, telefone, e-mail e mensagem. Os dados são validados e armazenados no banco de dados. Além disso, um e-mail de confirmação é enviado para o endereço de e-mail fornecido pelo usuário, confirmando o recebimento da mensagem de contato. Ademais, a API possui um sistema de segurança para autenticar os usuários para o acesso ao dashboard usando Spring Security para ter acesso ao sistema.
 
 ## Tecnologias
 
@@ -40,9 +40,7 @@ API para consumo de dados de um formulário de contato. A API permite que usuár
 
 [✅] Resolver o erro de cors que ocorre ao tentar acessar a API de um domínio diferente.
 
-[ - ] Documentar a API usando o Swagger, fornecendo informações detalhadas sobre os endpoints disponíveis e como usá-los.
-
-[ - ] Implementar testes automatizados para garantir a qualidade e integridade do código.
+[✅] Implementar testes automatizados para garantir a qualidade e integridade do código.
 
 ## Práticas adotadas
 
@@ -88,7 +86,7 @@ A API poderá ser acessada em [localhost:8080](http://localhost:8080).
 -   POST /contato
 
 ```
-http POST :8081/api/v1/contato
+http POST :8080/enviar
 
 HTTP/1.1 200 OK
 Content-Length: 129
@@ -132,6 +130,37 @@ Content-Type: application/json
 {
     "login": "RodrigoTeste",
     "senha": "123"
+}
+```
+
+```
+http POST :8080/reservas
+
+HTTP/1.1 200 OK
+Content-Length: 129
+Content-Type: application/json
+
+
+{
+    "data": "2021-10-10",
+    "morador": "rodrigo",
+    "areaComum": "salao de festas"
+}
+```
+
+```
+http POST :8080/despesas
+
+HTTP/1.1 200 OK
+Content-Length: 129
+Content-Type: application/json
+
+
+{
+    "data": "2021-10-10",
+    "descricao": "pagamento de fornecedores",
+    "valor": 1000
+    "categoriaDespesa": "manutencao"
 }
 ```
 
