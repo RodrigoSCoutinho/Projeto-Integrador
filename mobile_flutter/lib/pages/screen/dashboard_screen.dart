@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
-class DashboardScreen extends StatelessWidget {
+class DashboardScreen extends StatefulWidget {
+  @override
+  _DashboardScreenState createState() => _DashboardScreenState();
+}
+
+class _DashboardScreenState extends State<DashboardScreen> {
   final String nomeUsuario = 'Rodrigo Coutinho';
   final List<String> areasDisponiveis = [
     'SALAO_DE_FESTAS',
@@ -27,12 +32,19 @@ class DashboardScreen extends StatelessWidget {
   final List<Map<String, dynamic>> despesas = [
     {
       'descricao': 'Manutenção',
-      'valor': 150.0,
+      'valor': 30,
       'data': '2023-10-01',
       'categoria': 'MANUTENCAO'
     },
     // Add more expenses here
   ];
+
+  final _areaController = TextEditingController();
+  final _moradorController = TextEditingController();
+  final _dataReservaController = TextEditingController();
+  final _descricaoDespesaController = TextEditingController();
+  final _valorDespesaController = TextEditingController();
+  final _categoriaDespesaController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -184,22 +196,26 @@ class DashboardScreen extends StatelessWidget {
               child: Text(area),
             );
           }).toList(),
-          onChanged: (value) {},
+          onChanged: (value) {
+            _areaController.text = value!;
+          },
         ),
         SizedBox(height: 16),
         TextField(
+          controller: _moradorController,
           decoration: InputDecoration(
               labelText: 'Nome do morador', border: OutlineInputBorder()),
         ),
         SizedBox(height: 16),
         TextField(
+          controller: _dataReservaController,
           decoration:
               InputDecoration(labelText: 'Data', border: OutlineInputBorder()),
           keyboardType: TextInputType.datetime,
         ),
         SizedBox(height: 16),
         ElevatedButton(
-          onPressed: () {},
+          onPressed: _addReserva,
           child: Text('Criar Reserva'),
           style: ElevatedButton.styleFrom(
             primary: Colors.blue,
@@ -211,6 +227,20 @@ class DashboardScreen extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  void _addReserva() {
+    setState(() {
+      reservas.add({
+        'area': _areaController.text,
+        'morador': _moradorController.text,
+        'data': _dataReservaController.text,
+        'status': 'PENDENTE'
+      });
+      _areaController.clear();
+      _moradorController.clear();
+      _dataReservaController.clear();
+    });
   }
 
   Widget _buildReservasTable() {
@@ -234,7 +264,9 @@ class DashboardScreen extends StatelessWidget {
               children: [
                 if (reserva['status'] == 'PENDENTE')
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      _updateReservaStatus(reserva, 'APROVADA');
+                    },
                     child: Text('Aprovar'),
                     style: ElevatedButton.styleFrom(
                         primary: Colors.green, onPrimary: Colors.white),
@@ -242,7 +274,9 @@ class DashboardScreen extends StatelessWidget {
                 SizedBox(width: 8),
                 if (reserva['status'] == 'PENDENTE')
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      _updateReservaStatus(reserva, 'RECUSADA');
+                    },
                     child: Text('Recusar'),
                     style: ElevatedButton.styleFrom(
                         primary: Colors.red, onPrimary: Colors.white),
@@ -253,6 +287,12 @@ class DashboardScreen extends StatelessWidget {
         }).toList(),
       ),
     );
+  }
+
+  void _updateReservaStatus(Map<String, dynamic> reserva, String status) {
+    setState(() {
+      reserva['status'] = status;
+    });
   }
 
   Widget _buildFinanceiroSection() {
@@ -280,11 +320,13 @@ class DashboardScreen extends StatelessWidget {
     return Column(
       children: [
         TextField(
+          controller: _descricaoDespesaController,
           decoration: InputDecoration(
               labelText: 'Descrição', border: OutlineInputBorder()),
         ),
         SizedBox(height: 16),
         TextField(
+          controller: _valorDespesaController,
           decoration:
               InputDecoration(labelText: 'Valor', border: OutlineInputBorder()),
           keyboardType: TextInputType.number,
@@ -300,11 +342,13 @@ class DashboardScreen extends StatelessWidget {
               child: Text(categoria),
             );
           }).toList(),
-          onChanged: (value) {},
+          onChanged: (value) {
+            _categoriaDespesaController.text = value!;
+          },
         ),
         SizedBox(height: 16),
         ElevatedButton(
-          onPressed: () {},
+          onPressed: _addDespesa,
           child: Text('Registrar Despesa'),
           style: ElevatedButton.styleFrom(
             primary: Colors.blue,
@@ -316,6 +360,20 @@ class DashboardScreen extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  void _addDespesa() {
+    setState(() {
+      despesas.add({
+        'descricao': _descricaoDespesaController.text,
+        'valor': double.parse(_valorDespesaController.text),
+        'data': DateTime.now().toString().split(' ')[0],
+        'categoria': _categoriaDespesaController.text
+      });
+      _descricaoDespesaController.clear();
+      _valorDespesaController.clear();
+      _categoriaDespesaController.clear();
+    });
   }
 
   Widget _buildDespesasTable() {
