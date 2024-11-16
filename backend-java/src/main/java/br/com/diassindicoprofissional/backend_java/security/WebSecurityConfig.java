@@ -22,24 +22,24 @@ public class WebSecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/enviar").permitAll()
                 .requestMatchers(HttpMethod.POST, "/reservas").permitAll()
                 .requestMatchers(HttpMethod.POST, "/despesas").permitAll()
-                .requestMatchers(HttpMethod.POST, "/condominios").permitAll()
-                .requestMatchers(HttpMethod.POST, "/apartamentos").permitAll()
+                .requestMatchers(HttpMethod.POST, "/condominio").permitAll()
+                .requestMatchers(HttpMethod.POST, "/apartamento").permitAll()
 
                 .requestMatchers(HttpMethod.GET, "/usuarios").permitAll()
                 .requestMatchers(HttpMethod.GET, "/login").permitAll()
                 .requestMatchers(HttpMethod.GET, "/enviar").permitAll()
                 .requestMatchers(HttpMethod.GET, "/reservas").permitAll()
                 .requestMatchers(HttpMethod.GET, "/despesas").permitAll()
-                .requestMatchers(HttpMethod.GET, "/condominios").permitAll()
-                .requestMatchers(HttpMethod.GET, "/apartamentos").permitAll()
+                .requestMatchers(HttpMethod.GET, "/condominio").permitAll()
+                .requestMatchers(HttpMethod.GET, "/apartamento").permitAll()
 
                 .requestMatchers(HttpMethod.GET, "/usuarios/{id}").permitAll()
                 .requestMatchers(HttpMethod.GET, "/login/{id}").permitAll()
                 .requestMatchers(HttpMethod.GET, "/enviar/{id}").permitAll()
                 .requestMatchers(HttpMethod.GET, "/reservas/{id}").permitAll()
                 .requestMatchers(HttpMethod.GET, "/despesas/{id}").permitAll()
-                .requestMatchers(HttpMethod.GET, "/apartamentos/{id}").permitAll()
-                .requestMatchers(HttpMethod.GET, "/condominios/{id}").permitAll()
+                .requestMatchers(HttpMethod.GET, "/apartamento/{id}").permitAll()
+                .requestMatchers(HttpMethod.GET, "/condominio/{id}").permitAll()
 
                 .anyRequest().authenticated().and().cors();
 
