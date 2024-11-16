@@ -24,29 +24,29 @@ public class ApartamentoController {
     @Autowired
     private IApartamentoService apartamentoService;
 
-    @PostMapping
+    @PostMapping("/apartamento")
     public ResponseEntity<Apartamentos> criar(@RequestBody Apartamentos apartamento) {
         Apartamentos novoApartamento = apartamentoService.salvar(apartamento);
         return new ResponseEntity<>(novoApartamento, HttpStatus.CREATED);
     }
 
-    @GetMapping
+    @GetMapping("/apartamento")
     public ResponseEntity<List<Apartamentos>> listarTodos() {
         return ResponseEntity.ok(apartamentoService.listarTodos());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{id}/apartamento")
     public ResponseEntity<Apartamentos> buscarPorId(@PathVariable Long id) {
         return ResponseEntity.ok(apartamentoService.buscarPorId(id));
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{id}/apartamento")
     public ResponseEntity<Apartamentos> atualizar(@PathVariable Long id, @RequestBody Apartamentos apartamento) {
         apartamento.setId(id);
         return ResponseEntity.ok(apartamentoService.salvar(apartamento));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{id}/apartamento")
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
         apartamentoService.deletar(id);
         return ResponseEntity.noContent().build();

@@ -23,35 +23,35 @@ public class CondominioController {
     @Autowired
     private ICondominioService condominioService;
 
-    @PostMapping
+    @PostMapping("/condominio")
     public ResponseEntity<Condominios> criar(@RequestBody Condominios condominio) {
         Condominios novoCondominio = condominioService.salvar(condominio);
         return new ResponseEntity<>(novoCondominio, HttpStatus.CREATED);
     }
 
-    @GetMapping
+    @GetMapping("/condominio")
     public ResponseEntity<List<Condominios>> listarTodos() {
         return ResponseEntity.ok(condominioService.listarTodos());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{id}/condominio")
     public ResponseEntity<Condominios> buscarPorId(@PathVariable Long id) {
         return ResponseEntity.ok(condominioService.buscarPorId(id));
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{id}/condominio")
     public ResponseEntity<Condominios> atualizar(@PathVariable Long id, @RequestBody Condominios condominio) {
         condominio.setId(id);
         return ResponseEntity.ok(condominioService.salvar(condominio));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{id}/condominio")
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
         condominioService.deletar(id);
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/busca")
+    @GetMapping("/busca/condominio")
     public ResponseEntity<List<Condominios>> buscarPorNome(@RequestParam String nome) {
         return ResponseEntity.ok(condominioService.buscarPorNome(nome));
     }

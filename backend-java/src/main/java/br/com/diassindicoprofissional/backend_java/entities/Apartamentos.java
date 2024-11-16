@@ -24,6 +24,9 @@ public class Apartamentos {
     @Column(nullable = false)
     private String bloco;
 
+    @Column(nullable = false)
+    private String nome;
+
     @Column
     private Integer andar;
 
