@@ -12,7 +12,7 @@ export class CondominioService {
   constructor(private http: HttpClient) {}
 
   listarTodos(): Observable<Condominio[]> {
-    return this.http.get<Condominio[]>(environment.apiUrl + "/condominios");
+    return this.http.get<Condominio[]>(environment.apiUrl + "/condominio");
   }
 
   buscarPorId(id: number): Observable<Condominio> {
