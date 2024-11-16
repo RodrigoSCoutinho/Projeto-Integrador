@@ -4,6 +4,10 @@ import { ReservasService } from 'src/app/servicos/reservas.service';
 import { DespesasService } from 'src/app/servicos/despesas.service';
 import { Despesa } from '../../models/Despesa';
 import { Reserva } from '../../models/Reserva';
+import { Condominio } from '../../models/Condominio';
+import { Apartamento } from '../../models/Apartamento';
+import { CondominioService } from 'src/app/servicos/condominio.service';
+import { ApartamentoService } from 'src/app/servicos/apartamento.service';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -13,17 +17,28 @@ export class MainComponent implements OnInit {
   nomeUsuario = 'Rodrigo Coutinho';
   reservaForm: FormGroup;
   despesaForm: FormGroup;
+  condominioForm: FormGroup;
+  apartamentoForm: FormGroup;
 
   areasDisponiveis = ['SALAO_DE_FESTAS', 'CHURRASQUEIRA', 'ACADEMIA', 'QUADRA'];
   categoriasDespesas = ['MANUTENCAO', 'LIMPEZA', 'SEGURANÇA', 'AGUA & LUZ', 'OUTROS'];
 
   reservas: Reserva[] = [];
   despesas: Despesa[] = [];
+  condominios: Condominio[] = [];
+  apartamentos: Apartamento[] = [];
+
+  editandoCondominio = false;
+  condominioSelecionado: Condominio | null = null;
+  editandoApartamento = false;
+  apartamentoSelecionado: Apartamento | null = null;
 
   constructor(
     private fb: FormBuilder,
     private reservaService: ReservasService,
-    private despesaService: DespesasService
+    private despesaService: DespesasService,
+    private condominioService: CondominioService,
+    private apartamentoService: ApartamentoService
   ) {
     this.reservaForm = this.fb.group({
       area: ['', Validators.required],
@@ -36,11 +51,29 @@ export class MainComponent implements OnInit {
       valor: ['', [Validators.required, Validators.min(0)]],
       categoria: ['', Validators.required]
     });
+
+    
+    this.condominioForm = this.fb.group({
+      nome: ['', Validators.required],
+      endereco: ['', Validators.required],
+      quantidadeBlocos: ['', [Validators.required, Validators.min(1)]]
+    });
+
+    this.apartamentoForm = this.fb.group({
+      numero: ['', Validators.required],
+      bloco: ['', Validators.required],
+      andar: ['', [Validators.required, Validators.min(0)]],
+      metroQuadrado: ['', [Validators.required, Validators.min(0)]],
+      condominioId: ['', Validators.required]
+    });
+
   }
 
   ngOnInit() {
     this.carregarReservas();
     this.carregarDespesas();
+    this.carregarCondominios();
+    this.carregarApartamentos();
   }
 
   carregarReservas() {
@@ -58,6 +91,107 @@ export class MainComponent implements OnInit {
   getReservasPendentes(): number {
     return this.reservas.filter(r => r.status === 'PENDENTE').length;
   }
+
+   // Novos métodos para Condomínio
+   carregarCondominios() {
+    this.condominioService.listarTodos().subscribe(
+      condominios => this.condominios = condominios
+    );
+  }
+
+  onSubmitCondominio() {
+    if (this.condominioForm.valid) {
+      if (this.editandoCondominio && this.condominioSelecionado) {
+        this.condominioService.atualizar(this.condominioSelecionado.id!, this.condominioForm.value)
+          .subscribe(() => {
+            this.carregarCondominios();
+            this.resetCondominioForm();
+          });
+      } else {
+        this.condominioService.criar(this.condominioForm.value)
+          .subscribe(() => {
+            this.carregarCondominios();
+            this.resetCondominioForm();
+          });
+      }
+    }
+  }
+
+  editarCondominio(condominio: Condominio) {
+    this.editandoCondominio = true;
+    this.condominioSelecionado = condominio;
+    this.condominioForm.patchValue({
+      nome: condominio.nome,
+      endereco: condominio.endereco,
+      quantidadeBlocos: condominio.quantidadeBlocos
+    });
+  }
+
+  deletarCondominio(id: number) {
+    if (confirm('Tem certeza que deseja excluir este condomínio?')) {
+      this.condominioService.deletar(id).subscribe(() => {
+        this.carregarCondominios();
+      });
+    }
+  }
+
+  resetCondominioForm() {
+    this.editandoCondominio = false;
+    this.condominioSelecionado = null;
+    this.condominioForm.reset();
+  }
+
+  // Novos métodos para Apartamento
+  carregarApartamentos() {
+    this.apartamentoService.listarTodos().subscribe(
+      apartamentos => this.apartamentos = apartamentos
+    );
+  }
+
+  onSubmitApartamento() {
+    if (this.apartamentoForm.valid) {
+      if (this.editandoApartamento && this.apartamentoSelecionado) {
+        this.apartamentoService.atualizar(this.apartamentoSelecionado.id!, this.apartamentoForm.value)
+          .subscribe(() => {
+            this.carregarApartamentos();
+            this.resetApartamentoForm();
+          });
+      } else {
+        this.apartamentoService.criar(this.apartamentoForm.value)
+          .subscribe(() => {
+            this.carregarApartamentos();
+            this.resetApartamentoForm();
+          });
+      }
+    }
+  }
+
+  editarApartamento(apartamento: Apartamento) {
+    this.editandoApartamento = true;
+    this.apartamentoSelecionado = apartamento;
+    this.apartamentoForm.patchValue({
+      numero: apartamento.numero,
+      bloco: apartamento.bloco,
+      andar: apartamento.andar,
+      metroQuadrado: apartamento.metroQuadrado,
+      condominioId: apartamento.condominioId
+    });
+  }
+
+  deletarApartamento(id: number) {
+    if (confirm('Tem certeza que deseja excluir este apartamento?')) {
+      this.apartamentoService.deletar(id).subscribe(() => {
+        this.carregarApartamentos();
+      });
+    }
+  }
+
+  resetApartamentoForm() {
+    this.editandoApartamento = false;
+    this.apartamentoSelecionado = null;
+    this.apartamentoForm.reset();
+  }
+
 
   get totalDespesas(): number {
     return this.despesas.reduce((total, despesa) => total + despesa.valor, 0);

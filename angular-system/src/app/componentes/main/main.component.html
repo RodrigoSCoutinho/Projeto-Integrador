@@ -164,6 +164,154 @@
 		  </table>
 		</div>
 	  </section>
+
+	  <!-- Sistema de Condomínios -->
+	  <section class="condominios-section">
+		<h2>Gerenciamento de Condomínios</h2>
+		
+		<form [formGroup]="condominioForm" (ngSubmit)="onSubmitCondominio()">
+		  <div class="form-group">
+			<input 
+			  type="text" 
+			  formControlName="nome" 
+			  placeholder="Nome do Condomínio"
+			  class="form-control">
+		  </div>
+		  
+		  <div class="form-group">
+			<input 
+			  type="text" 
+			  formControlName="endereco" 
+			  placeholder="Endereço"
+			  class="form-control">
+		  </div>
+		  
+		  <div class="form-group">
+			<input 
+			  type="number" 
+			  formControlName="quantidadeBlocos" 
+			  placeholder="Quantidade de Blocos"
+			  class="form-control">
+		  </div>
+		  
+		  <div class="form-group">
+			<button 
+			  type="submit" 
+			  [disabled]="!condominioForm.valid"
+			  class="btn-primary">
+			  {{ editandoCondominio ? 'Atualizar' : 'Criar' }} Condomínio
+			</button>
+		  </div>
+		</form>
+	
+		<div class="table-responsive">
+		  <table>
+			<thead>
+			  <tr>
+				<th>Nome</th>
+				<th>Endereço</th>
+				<th>Quantidade de Blocos</th>
+				<th>Ações</th>
+			  </tr>
+			</thead>
+			<tbody>
+			  <tr *ngFor="let condominio of condominios">
+				<td>{{condominio.nome}}</td>
+				<td>{{condominio.endereco}}</td>
+				<td>{{condominio.quantidadeBlocos}}</td>
+				<td class="actions">
+				  <button (click)="editarCondominio(condominio)" class="btn-warning">Editar</button>
+				  <button (click)="deletarCondominio(condominio.id!)" class="btn-danger">Excluir</button>
+				</td>
+			  </tr>
+			</tbody>
+		  </table>
+		</div>
+	  </section>
+  
+	  <!-- Sistema de Apartamentos -->
+	  <section class="apartamentos-section">
+		<h2>Gerenciamento de Apartamentos</h2>
+		
+		<form [formGroup]="apartamentoForm" (ngSubmit)="onSubmitApartamento()">
+		  <div class="form-group">
+			<input 
+			  type="text" 
+			  formControlName="numero" 
+			  placeholder="Número do Apartamento"
+			  class="form-control">
+		  </div>
+		  
+		  <div class="form-group">
+			<input 
+			  type="text" 
+			  formControlName="bloco" 
+			  placeholder="Bloco"
+			  class="form-control">
+		  </div>
+		  
+		  <div class="form-group">
+			<input 
+			  type="number" 
+			  formControlName="andar" 
+			  placeholder="Andar"
+			  class="form-control">
+		  </div>
+		  
+		  <div class="form-group">
+			<input 
+			  type="number" 
+			  formControlName="metroQuadrado" 
+			  placeholder="Metro Quadrado"
+			  class="form-control">
+		  </div>
+		  
+		  <div class="form-group">
+			<select formControlName="condominioId" class="form-control">
+			  <option value="">Selecione um Condomínio</option>
+			  <option *ngFor="let condominio of condominios" [value]="condominio.id">
+				{{condominio.nome}}
+			  </option>
+			</select>
+		  </div>
+		  
+		  <div class="form-group">
+			<button 
+			  type="submit" 
+			  [disabled]="!apartamentoForm.valid"
+			  class="btn-primary">
+			  {{ editandoApartamento ? 'Atualizar' : 'Criar' }} Apartamento
+			</button>
+		  </div>
+		</form>
+	
+		<div class="table-responsive">
+		  <table>
+			<thead>
+			  <tr>
+				<th>Número</th>
+				<th>Bloco</th>
+				<th>Andar</th>
+				<th>Metro Quadrado</th>
+				<th>Condomínio</th>
+				<th>Ações</th>
+			  </tr>
+			</thead>
+			<tbody>
+			  <tr *ngFor="let apartamento of apartamentos">
+				<td>{{apartamento.numero}}</td>
+				<td>{{apartamento.bloco}}</td>
+				<td>{{apartamento.andar}}</td>
+				<td>{{apartamento.metroQuadrado}}</td>
+				<td>{{apartamento.condominioId}}</td>
+				<td class="actions">
+				  <button (click)="editarApartamento(apartamento)" class="btn-warning">Editar</button>
+				  <button (click)="apartamento.id && deletarApartamento(apartamento.id)" class="btn-danger">Excluir</button>
+				</td>
+			  </tr>
+			</tbody>
+		  </table>
+		</div>
+	  </section>
 	</div>
   </div>
-  
