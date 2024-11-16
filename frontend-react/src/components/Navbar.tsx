@@ -59,9 +59,9 @@ const Navbar = () => {
                     <a href="#services" className="hover:text-yellow-400 px-4">
                         Serviços
                     </a>
-                    <a href="./login.html" className="hover:text-yellow-400 px-4">
+                    {/* <a href="./login.html" className="hover:text-yellow-400 px-4">
                         Painel Administrativo
-                    </a>
+                    </a> */}
                     <a
                         href="https://api.whatsapp.com/send?l=pt&phone=5584991553030&text=Olá, gostaria de saber mais sobre serviços da Dias Sindico Profissional!"
                         target="_blank"
