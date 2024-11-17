@@ -16,7 +16,7 @@ import { Signup } from 'src/app/models/Signup';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-  nomeUsuario = '';
+  nomeUsuario = 'Rodrigo Coutinho';
   reservaForm: FormGroup;
   despesaForm: FormGroup;
   condominioForm: FormGroup;

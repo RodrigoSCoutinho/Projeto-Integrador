@@ -16,15 +16,15 @@ export class CondominioService {
   }
 
   buscarPorId(id: number): Observable<Condominio> {
-    return this.http.get<Condominio>(`${environment.apiUrl}/${id}`);
+    return this.http.get<Condominio>(`${environment.apiUrl}/condominio/${id}`);
   }
 
   criar(condominio: Condominio): Observable<Condominio> {
-    return this.http.post<Condominio>(environment.apiUrl, condominio);
+    return this.http.post<Condominio>(environment.apiUrl + "/condominio", condominio);
   }
 
   atualizar(id: number, condominio: Condominio): Observable<Condominio> {
-    return this.http.put<Condominio>(`${environment.apiUrl}/${id}`, condominio);
+    return this.http.put<Condominio>(`${environment.apiUrl}/${id}` + "/condominio", condominio);
   }
 
   deletar(id: number): Observable<void> {
