@@ -34,18 +34,18 @@ public class CondominioController {
         return ResponseEntity.ok(condominioService.listarTodos());
     }
 
-    @GetMapping("/{id}/condominio")
+    @GetMapping("/condominio/{id}")
     public ResponseEntity<Condominios> buscarPorId(@PathVariable Long id) {
         return ResponseEntity.ok(condominioService.buscarPorId(id));
     }
 
-    @PutMapping("/{id}/condominio")
+    @PutMapping("/condominio/{id}")
     public ResponseEntity<Condominios> atualizar(@PathVariable Long id, @RequestBody Condominios condominio) {
         condominio.setId(id);
         return ResponseEntity.ok(condominioService.salvar(condominio));
     }
 
-    @DeleteMapping("/{id}/condominio")
+    @DeleteMapping("/condominio/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
         condominioService.deletar(id);
         return ResponseEntity.noContent().build();

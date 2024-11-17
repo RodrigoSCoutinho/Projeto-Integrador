@@ -40,6 +40,8 @@ public class WebSecurityConfig {
                 .requestMatchers(HttpMethod.GET, "/despesas/{id}").permitAll()
                 .requestMatchers(HttpMethod.GET, "/apartamento/{id}").permitAll()
                 .requestMatchers(HttpMethod.GET, "/condominio/{id}").permitAll()
+                .requestMatchers(HttpMethod.GET, "/busca/condominio").permitAll()
+                .requestMatchers(HttpMethod.GET, "/condominio/{condominioId}").permitAll()
 
                 .anyRequest().authenticated().and().cors();
 

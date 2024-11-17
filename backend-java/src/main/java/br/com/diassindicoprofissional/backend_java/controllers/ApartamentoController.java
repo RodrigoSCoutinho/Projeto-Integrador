@@ -35,18 +35,18 @@ public class ApartamentoController {
         return ResponseEntity.ok(apartamentoService.listarTodos());
     }
 
-    @GetMapping("/{id}/apartamento")
+    @GetMapping("/apartamento/{id}")
     public ResponseEntity<Apartamentos> buscarPorId(@PathVariable Long id) {
         return ResponseEntity.ok(apartamentoService.buscarPorId(id));
     }
 
-    @PutMapping("/{id}/apartamento")
+    @PutMapping("/apartamento/{id}")
     public ResponseEntity<Apartamentos> atualizar(@PathVariable Long id, @RequestBody Apartamentos apartamento) {
         apartamento.setId(id);
         return ResponseEntity.ok(apartamentoService.salvar(apartamento));
     }
 
-    @DeleteMapping("/{id}/apartamento")
+    @DeleteMapping("/apartamento/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
         apartamentoService.deletar(id);
         return ResponseEntity.noContent().build();
