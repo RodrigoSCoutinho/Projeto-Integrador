@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Usuario } from '../models/Usuario';
 import { SalutarToken } from '../models/SalutarToken';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment.development';
 
 @Injectable({
@@ -15,6 +16,10 @@ export class LoginService {
   ) { }
 
   public efetuarLogin(usuario: Usuario): Observable<SalutarToken>{
-    return this.http.post<SalutarToken>(environment.apiUrl + "/login", usuario);
+    return this.http.post<SalutarToken>(environment.apiUrl + "/login", usuario).pipe(
+      tap((res: SalutarToken) => {
+        localStorage.setItem('login', usuario.login);
+      })
+    );
   }
 }

@@ -8,13 +8,15 @@ import { Condominio } from '../../models/Condominio';
 import { Apartamento } from '../../models/Apartamento';
 import { CondominioService } from 'src/app/servicos/condominio.service';
 import { ApartamentoService } from 'src/app/servicos/apartamento.service';
+import { SignupUserService } from 'src/app/servicos/signup-user.service';
+import { Signup } from 'src/app/models/Signup';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-  nomeUsuario = 'Rodrigo Coutinho';
+  nomeUsuario = '';
   reservaForm: FormGroup;
   despesaForm: FormGroup;
   condominioForm: FormGroup;
@@ -38,7 +40,8 @@ export class MainComponent implements OnInit {
     private reservaService: ReservasService,
     private despesaService: DespesasService,
     private condominioService: CondominioService,
-    private apartamentoService: ApartamentoService
+    private apartamentoService: ApartamentoService,
+    private signupUserService: SignupUserService
   ) {
     this.reservaForm = this.fb.group({
       area: ['', Validators.required],
@@ -74,6 +77,7 @@ export class MainComponent implements OnInit {
     this.carregarDespesas();
     this.carregarCondominios();
     this.carregarApartamentos();
+    this.carregarUsuario();
   }
 
   carregarReservas() {
@@ -245,5 +249,21 @@ export class MainComponent implements OnInit {
         this.reservas[reservaIndex] = reserva;
       }
     });
+  }
+
+  carregarUsuario() {
+    const loginString = localStorage.getItem('login');
+    if (loginString) {
+      const login: Signup = JSON.parse(loginString);
+      this.signupUserService.getUsuario(login).subscribe(usuario => {
+        this.nomeUsuario = usuario.nome;
+      });
+    }
+  }
+
+  logout() {
+    // localStorage.removeItem('token');
+    window.location.reload();
+    window.location.href = '/login';
   }
 }
