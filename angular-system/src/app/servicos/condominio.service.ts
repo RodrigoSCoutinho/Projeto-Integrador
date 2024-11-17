@@ -24,11 +24,11 @@ export class CondominioService {
   }
 
   atualizar(id: number, condominio: Condominio): Observable<Condominio> {
-    return this.http.put<Condominio>(`${environment.apiUrl}/${id}` + "/condominio", condominio);
+    return this.http.put<Condominio>(`${environment.apiUrl}/condominio/${id}`, condominio);
   }
 
   deletar(id: number): Observable<void> {
-    return this.http.delete<void>(`${environment.apiUrl}/${id}`);
+     return this.http.delete<void>(`${environment.apiUrl}/condominio/${id}`);
   }
 
   buscarPorNome(nome: string): Observable<Condominio[]> {
