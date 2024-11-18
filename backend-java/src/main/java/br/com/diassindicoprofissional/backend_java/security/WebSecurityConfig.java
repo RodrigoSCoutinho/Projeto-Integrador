@@ -18,12 +18,12 @@ public class WebSecurityConfig {
         http.csrf().disable()
                 .authorizeRequests()
                 .requestMatchers(HttpMethod.POST, "/usuarios").permitAll()
+                .requestMatchers(HttpMethod.POST, "/apartamentos").permitAll()
                 .requestMatchers(HttpMethod.POST, "/login").permitAll()
                 .requestMatchers(HttpMethod.POST, "/enviar").permitAll()
                 .requestMatchers(HttpMethod.POST, "/reservas").permitAll()
                 .requestMatchers(HttpMethod.POST, "/despesas").permitAll()
                 .requestMatchers(HttpMethod.POST, "/condominio").permitAll()
-                .requestMatchers(HttpMethod.POST, "/apartamento").permitAll()
 
                 .requestMatchers(HttpMethod.GET, "/usuarios").permitAll()
                 .requestMatchers(HttpMethod.GET, "/login").permitAll()
@@ -31,20 +31,22 @@ public class WebSecurityConfig {
                 .requestMatchers(HttpMethod.GET, "/reservas").permitAll()
                 .requestMatchers(HttpMethod.GET, "/despesas").permitAll()
                 .requestMatchers(HttpMethod.GET, "/condominio").permitAll()
-                .requestMatchers(HttpMethod.GET, "/apartamento").permitAll()
+                .requestMatchers(HttpMethod.GET, "/apartamentos").permitAll()
 
                 .requestMatchers(HttpMethod.GET, "/usuarios/{id}").permitAll()
                 .requestMatchers(HttpMethod.GET, "/login/{id}").permitAll()
                 .requestMatchers(HttpMethod.GET, "/enviar/{id}").permitAll()
                 .requestMatchers(HttpMethod.GET, "/reservas/{id}").permitAll()
                 .requestMatchers(HttpMethod.GET, "/despesas/{id}").permitAll()
-                .requestMatchers(HttpMethod.GET, "/apartamento/{id}").permitAll()
+                .requestMatchers(HttpMethod.GET, "/apartamentos/{id}").permitAll()
                 .requestMatchers(HttpMethod.GET, "/condominio/{id}").permitAll()
                 .requestMatchers(HttpMethod.GET, "/busca/condominio").permitAll()
                 .requestMatchers(HttpMethod.GET, "/condominio/{condominioId}").permitAll()
 
                 .requestMatchers(HttpMethod.PUT, "/condominio/{condominioId}").permitAll()
                 .requestMatchers(HttpMethod.DELETE, "/condominio/{condominioId}").permitAll()
+                .requestMatchers(HttpMethod.PUT, "/apartamentos/{id}").permitAll()
+                .requestMatchers(HttpMethod.DELETE, "/apartamentos/{id}").permitAll()
 
                 .anyRequest().authenticated().and().cors();
 

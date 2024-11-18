@@ -4,7 +4,7 @@ import java.util.List;
 import br.com.diassindicoprofissional.backend_java.entities.Apartamentos;
 
 public interface IApartamentoService {
-    Apartamentos salvar(Apartamentos apartamento);
+    Apartamentos salvarApartamentos(Apartamentos apartamento);
 
     List<Apartamentos> listarTodos();
 

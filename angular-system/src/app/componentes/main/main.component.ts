@@ -161,7 +161,7 @@ export class MainComponent implements OnInit {
             this.resetApartamentoForm();
           });
       } else {
-        this.apartamentoService.criar(this.apartamentoForm.value)
+        this.apartamentoService.salvarApartamentos(this.apartamentoForm.value)
           .subscribe(() => {
             this.carregarApartamentos();
             this.resetApartamentoForm();

@@ -15,24 +15,23 @@ export class ApartamentoService {
   constructor(private http: HttpClient) { }
 
   listarTodos(): Observable<Apartamento[]> {
-    return this.http.get<Apartamento[]>(environment.apiUrl + "/apartamento");
+    return this.http.get<Apartamento[]>(environment.apiUrl + "/apartamentos");
   }
 
   buscarPorId(id: number): Observable<Apartamento> {
     return this.http.get<Apartamento>(`${environment.apiUrl}/condominio/${id}`);
   }
 
-  criar(apartamento: Apartamento): Observable<Apartamento> {
-    return this.http.post<Apartamento>(environment.apiUrl + "/apartamento", apartamento);
+  salvarApartamentos(apartamento: Apartamento): Observable<Apartamento> {
+    return this.http.post<Apartamento>(environment.apiUrl + "/apartamentos", apartamento);
   }
 
   atualizar(id: number, apartamento: Apartamento): Observable<Apartamento> {
-    return this.http.put<Apartamento>(`${environment.apiUrl}/${id}` + "/apartamento", apartamento);
-  return this.http.put<Apartamento>(`${environment.apiUrl}/apartamento/${id}`, apartamento);
+    return this.http.put<Apartamento>(`${environment.apiUrl}/${id}` + "/apartamentos", apartamento);
   }
 
   deletar(id: number): Observable<void> {
-    return this.http.delete<void>(`${environment.apiUrl}/apartamento/${id}`);
+    return this.http.delete<void>(`${environment.apiUrl}/apartamentos/${id}`);
   }
 
   listarPorCondominio(condominioId: number): Observable<Apartamento[]> {

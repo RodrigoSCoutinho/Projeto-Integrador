@@ -24,32 +24,53 @@ public class ApartamentoController {
     @Autowired
     private IApartamentoService apartamentoService;
 
-    @PostMapping("/apartamento")
-    public ResponseEntity<Apartamentos> criar(@RequestBody Apartamentos apartamento) {
-        Apartamentos novoApartamento = apartamentoService.salvar(apartamento);
-        return new ResponseEntity<>(novoApartamento, HttpStatus.CREATED);
+    @PostMapping("/apartamentos")
+    public ResponseEntity<Apartamentos> salvarApartamentos(@RequestBody Apartamentos apartamento) {
+        Apartamentos res = apartamentoService.salvarApartamentos(apartamento);
+        if (res != null) {
+            return ResponseEntity.ok(res);
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+
+        }
     }
 
-    @GetMapping("/apartamento")
+    @GetMapping("/apartamentos")
     public ResponseEntity<List<Apartamentos>> listarTodos() {
         return ResponseEntity.ok(apartamentoService.listarTodos());
     }
 
-    @GetMapping("/apartamento/{id}")
+    @GetMapping("/apartamentos/{id}")
     public ResponseEntity<Apartamentos> buscarPorId(@PathVariable Long id) {
-        return ResponseEntity.ok(apartamentoService.buscarPorId(id));
+        Apartamentos res = apartamentoService.buscarPorId(id);
+        if (res != null) {
+            return ResponseEntity.ok(res);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
-    @PutMapping("/apartamento/{id}")
+    @PutMapping("/apartamentos/{id}")
     public ResponseEntity<Apartamentos> atualizar(@PathVariable Long id, @RequestBody Apartamentos apartamento) {
         apartamento.setId(id);
-        return ResponseEntity.ok(apartamentoService.salvar(apartamento));
+        Apartamentos res = apartamentoService.salvarApartamentos(apartamento);
+        if (res != null) {
+            return ResponseEntity.ok(res);
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+
+        }
     }
 
-    @DeleteMapping("/apartamento/{id}")
+    @DeleteMapping("/apartamentos/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
-        apartamentoService.deletar(id);
-        return ResponseEntity.noContent().build();
+        Apartamentos res = apartamentoService.buscarPorId(id);
+        if (res != null) {
+            apartamentoService.deletar(res.getId());
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @GetMapping("/condominio/{condominioId}")

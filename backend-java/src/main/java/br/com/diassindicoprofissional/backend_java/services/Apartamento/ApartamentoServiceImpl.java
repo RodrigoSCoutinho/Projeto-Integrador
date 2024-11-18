@@ -14,7 +14,7 @@ public class ApartamentoServiceImpl implements IApartamentoService {
     private ApartamentosDAO dao;
 
     @Override
-    public Apartamentos salvar(Apartamentos apartamento) {
+    public Apartamentos salvarApartamentos(Apartamentos apartamento) {
         return dao.save(apartamento);
     }
 
