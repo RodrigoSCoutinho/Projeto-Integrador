@@ -43,6 +43,9 @@ public class WebSecurityConfig {
                 .requestMatchers(HttpMethod.GET, "/busca/condominio").permitAll()
                 .requestMatchers(HttpMethod.GET, "/condominio/{condominioId}").permitAll()
 
+                .requestMatchers(HttpMethod.PUT, "/condominio/{condominioId}").permitAll()
+                .requestMatchers(HttpMethod.DELETE, "/condominio/{condominioId}").permitAll()
+
                 .anyRequest().authenticated().and().cors();
 
         http.addFilterBefore(new MyFilter(), UsernamePasswordAuthenticationFilter.class);
