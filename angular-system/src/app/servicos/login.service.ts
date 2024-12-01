@@ -18,7 +18,7 @@ export class LoginService {
   public efetuarLogin(usuario: Usuario): Observable<SalutarToken>{
     return this.http.post<SalutarToken>(environment.apiUrl + "/login", usuario).pipe(
       tap((res: SalutarToken) => {
-        localStorage.setItem('login', usuario.login);
+        localStorage.setItem('login', usuario.login); 
       })
     );
   }

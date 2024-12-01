@@ -13,8 +13,4 @@ export class SignupUserService {
   public criarUsuario(usuario: Signup){
     return this.http.post(environment.apiUrl + "/usuarios", usuario);
   }
-
-  public getUsuario(login: Signup) {
-    return this.http.get<Signup>(`${environment.apiUrl}/usuarios/${login}`);
-  }
 }

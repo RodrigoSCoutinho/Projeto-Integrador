@@ -10,17 +10,18 @@ import { CondominioService } from 'src/app/servicos/condominio.service';
 import { ApartamentoService } from 'src/app/servicos/apartamento.service';
 import { SignupUserService } from 'src/app/servicos/signup-user.service';
 import { Signup } from 'src/app/models/Signup';
+import { LoginService } from 'src/app/servicos/login.service';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-  nomeUsuario = 'Rodrigo C.';
+  nomeUsuario = '';
   reservaForm: FormGroup;
   despesaForm: FormGroup;
   condominioForm: FormGroup;
-  apartamentoForm: FormGroup;
+  // apartamentoForm: FormGroup;
 
   areasDisponiveis = ['SALAO_DE_FESTAS', 'CHURRASQUEIRA', 'ACADEMIA', 'QUADRA'];
   categoriasDespesas = ['MANUTENCAO', 'LIMPEZA', 'SEGURANÇA', 'AGUA & LUZ', 'OUTROS'];
@@ -28,20 +29,21 @@ export class MainComponent implements OnInit {
   reservas: Reserva[] = [];
   despesas: Despesa[] = [];
   condominios: Condominio[] = [];
-  apartamentos: Apartamento[] = [];
+  // apartamentos: Apartamento[] = [];
 
   editandoCondominio = false;
   condominioSelecionado: Condominio | null = null;
   editandoApartamento = false;
-  apartamentoSelecionado: Apartamento | null = null;
+  // apartamentoSelecionado: Apartamento | null = null;
 
   constructor(
     private fb: FormBuilder,
     private reservaService: ReservasService,
     private despesaService: DespesasService,
     private condominioService: CondominioService,
-    private apartamentoService: ApartamentoService,
-    private signupUserService: SignupUserService
+    // private apartamentoService: ApartamentoService,
+    private signupUserService: SignupUserService,
+    private loginService: LoginService
   ) {
     this.reservaForm = this.fb.group({
       area: ['', Validators.required],
@@ -62,22 +64,22 @@ export class MainComponent implements OnInit {
       quantidadeBlocos: ['', [Validators.required, Validators.min(1)]]
     });
 
-    this.apartamentoForm = this.fb.group({
-      numero: ['', Validators.required],
-      bloco: ['', Validators.required],
-      andar: ['', [Validators.required, Validators.min(0)]],
-      metroQuadrado: ['', [Validators.required, Validators.min(0)]],
-      condominioId: ['', Validators.required]
-    });
+    // this.apartamentoForm = this.fb.group({
+    //   numero: ['', Validators.required],
+    //   bloco: ['', Validators.required],
+    //   andar: ['', [Validators.required, Validators.min(0)]],
+    //   metroQuadrado: ['', [Validators.required, Validators.min(0)]],
+    //   condominioId: ['', Validators.required]
+    // });
 
   }
 
   ngOnInit() {
+    this.nomeUsuario = localStorage.getItem('login') || '';
     this.carregarReservas();
     this.carregarDespesas();
     this.carregarCondominios();
-    this.carregarApartamentos();
-    this.carregarUsuario();
+    // this.carregarApartamentos();
   }
 
   carregarReservas() {
@@ -145,56 +147,55 @@ export class MainComponent implements OnInit {
     this.condominioForm.reset();
   }
 
-  // Novos métodos para Apartamento
-  carregarApartamentos() {
-    this.apartamentoService.listarTodos().subscribe(
-      apartamentos => this.apartamentos = apartamentos
-    );
-  }
+  // carregarApartamentos() {
+  //   this.apartamentoService.listarTodos().subscribe(
+  //     apartamentos => this.apartamentos = apartamentos
+  //   );
+  // }
 
-  onSubmitApartamento() {
-    if (this.apartamentoForm.valid) {
-      if (this.editandoApartamento && this.apartamentoSelecionado) {
-        this.apartamentoService.atualizar(this.apartamentoSelecionado.id!, this.apartamentoForm.value)
-          .subscribe(() => {
-            this.carregarApartamentos();
-            this.resetApartamentoForm();
-          });
-      } else {
-        this.apartamentoService.salvarApartamentos(this.apartamentoForm.value)
-          .subscribe(() => {
-            this.carregarApartamentos();
-            this.resetApartamentoForm();
-          });
-      }
-    }
-  }
+  // onSubmitApartamento() {
+  //   if (this.apartamentoForm.valid) {
+  //     if (this.editandoApartamento && this.apartamentoSelecionado) {
+  //       this.apartamentoService.atualizar(this.apartamentoSelecionado.id!, this.apartamentoForm.value)
+  //         .subscribe(() => {
+  //           this.carregarApartamentos();
+  //           this.resetApartamentoForm();
+  //         });
+  //     } else {
+  //       this.apartamentoService.salvarApartamentos(this.apartamentoForm.value)
+  //         .subscribe(() => {
+  //           this.carregarApartamentos();
+  //           this.resetApartamentoForm();
+  //         });
+  //     }
+  //   }
+  // }
 
-  editarApartamento(apartamento: Apartamento) {
-    this.editandoApartamento = true;
-    this.apartamentoSelecionado = apartamento;
-    this.apartamentoForm.patchValue({
-      numero: apartamento.numero,
-      bloco: apartamento.bloco,
-      andar: apartamento.andar,
-      metroQuadrado: apartamento.metroQuadrado,
-      condominioId: apartamento.condominioId
-    });
-  }
+  // editarApartamento(apartamento: Apartamento) {
+  //   this.editandoApartamento = true;
+  //   this.apartamentoSelecionado = apartamento;
+  //   this.apartamentoForm.patchValue({
+  //     numero: apartamento.numero,
+  //     bloco: apartamento.bloco,
+  //     andar: apartamento.andar,
+  //     metroQuadrado: apartamento.metroQuadrado,
+  //     condominioId: apartamento.condominioId
+  //   });
+  // }
 
-  deletarApartamento(id: number) {
-    if (confirm('Tem certeza que deseja excluir este apartamento?')) {
-      this.apartamentoService.deletar(id).subscribe(() => {
-        this.carregarApartamentos();
-      });
-    }
-  }
+  // deletarApartamento(id: number) {
+  //   if (confirm('Tem certeza que deseja excluir este apartamento?')) {
+  //     this.apartamentoService.deletar(id).subscribe(() => {
+  //       this.carregarApartamentos();
+  //     });
+  //   }
+  // }
 
-  resetApartamentoForm() {
-    this.editandoApartamento = false;
-    this.apartamentoSelecionado = null;
-    this.apartamentoForm.reset();
-  }
+  // resetApartamentoForm() {
+  //   this.editandoApartamento = false;
+  //   this.apartamentoSelecionado = null;
+  //   this.apartamentoForm.reset();
+  // }
 
 
   get totalDespesas(): number {
@@ -249,16 +250,6 @@ export class MainComponent implements OnInit {
         this.reservas[reservaIndex] = reserva;
       }
     });
-  }
-
-  carregarUsuario() {
-    const loginString = localStorage.getItem('login');
-    if (loginString) {
-      const login: Signup = JSON.parse(loginString);
-      this.signupUserService.getUsuario(login).subscribe(usuario => {
-        this.nomeUsuario = usuario.nome;
-      });
-    }
   }
 
   logout() {
