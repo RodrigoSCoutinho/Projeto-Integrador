@@ -33,11 +33,18 @@ public class Apartamentos {
     @Column(name = "metro_quadrado")
     private Double metroQuadrado;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "condominio_id", nullable = false)
     private Condominios condominio;
 
-    // Getters e Setters
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
     public Long getId() {
         return id;
     }
@@ -78,11 +85,11 @@ public class Apartamentos {
         this.metroQuadrado = metroQuadrado;
     }
 
-    public Condominios getCondominios() {
+    public Condominios getCondominio() {
         return condominio;
     }
 
-    public void setCondominios(Condominios condominio) {
+    public void setCondominio(Condominios condominio) {
         this.condominio = condominio;
     }
 
